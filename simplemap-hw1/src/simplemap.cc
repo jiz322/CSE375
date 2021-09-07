@@ -1,6 +1,7 @@
 #include "simplemap.h"
 #include <iostream>
 
+using namespace std;
 //Since header file is the header of cc file, 
 //I try to omit many declarations here
 
@@ -23,7 +24,7 @@ std::vector<int> v;
 //^this should be useless
 
 // The constructor should just initialize the vectors to be empty
-simplemap_t() {
+simplemap_t:: simplemap_t() {
     k = {};
     v = {};
 }
@@ -33,7 +34,7 @@ simplemap_t() {
 // already present.
 template <class K, class V> //have to declare its template when implementing
                             //its fuctions
-bool insert(K key, V val) {
+bool simplemap_t::insert(K key, V val) {
 
     assert("Not Implemented");
     return true;
