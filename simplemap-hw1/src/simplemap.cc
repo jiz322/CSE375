@@ -12,17 +12,16 @@
 
 // Define the two vectors of types K and V
 // << use std::vector<K> >>
-template <class K, class V>
-std::vector<K> k;
-template <class K, class V>
-std::vector<V> v;
+
+//It seems I have to specification here
+//Any better ways?
+std::vector<char*> k;
+std::vector<int> v;
 
 //public:
 //^this should be useless
 
 // The constructor should just initialize the vectors to be empty
-template <class K, class V>//have to declare its template when implementing
-                            //its fuctions
 simplemap::simplemap_t() {
     k = {};
     v = {};
