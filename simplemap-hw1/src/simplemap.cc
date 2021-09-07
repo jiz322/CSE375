@@ -24,6 +24,7 @@ std::vector<int> v;
 //^this should be useless
 
 // The constructor should just initialize the vectors to be empty
+template <class K, class V> 
 simplemap_t:: simplemap_t() {
     k = {};
     v = {};
