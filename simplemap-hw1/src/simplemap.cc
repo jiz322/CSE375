@@ -33,8 +33,7 @@ simplemap_t:: simplemap_t() {
 // Insert (key, val) if and only if the key is not currently present in
 // the map.  Returns true on success, false if the key was
 // already present.
-template <class K, class V> //have to declare its template when implementing
-                            //its fuctions
+template <class K, class V> 
 bool simplemap_t::insert(K key, V val){
 
     assert("Not Implemented");
