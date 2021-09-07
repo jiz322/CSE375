@@ -34,7 +34,7 @@ simplemap_t:: simplemap_t() {
 // the map.  Returns true on success, false if the key was
 // already present.
 template <class K, class V> 
-bool simplemap_t::insert(K key, V val){
+simplemap_t::insert(K key, V val){
 
     assert("Not Implemented");
     return true;
