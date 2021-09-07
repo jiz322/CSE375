@@ -1,4 +1,5 @@
 #include "simplemap.h"
+#include <iostream>
 
 //Since header file is the header of cc file, 
 //I try to omit many declarations here
@@ -55,7 +56,7 @@ bool simplemap::insert(K key, V val) {
 
 int main(int argc, char** argv) {
 
-    simplemap_t <char*, int> a = simplemap_t();
+    simplemap_t<char*, int> a = simplemap_t<char*, int> ();
     std::cout << a << std::endl;
 
 }
