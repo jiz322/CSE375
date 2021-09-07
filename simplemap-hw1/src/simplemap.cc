@@ -57,6 +57,6 @@ bool simplemap::insert(K key, V val) {
 int main(int argc, char** argv) {
 
     simplemap_t<char*, int> a = simplemap_t<char*, int> ();
-    std::cout << a << std::endl;
+    std::cout << "hi" << std::endl;
 
 }
