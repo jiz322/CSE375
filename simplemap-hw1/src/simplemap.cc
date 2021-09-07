@@ -35,7 +35,7 @@ simplemap_t:: simplemap_t() {
 // already present.
 template <class K, class V> //have to declare its template when implementing
                             //its fuctions
-simplemap_t<K, V>::bool insert(K key, V val){
+bool simplemap_t<K, V>::insert(K key, V val){
 
     assert("Not Implemented");
     return true;
