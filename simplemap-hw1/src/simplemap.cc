@@ -12,14 +12,17 @@
 
 // Define the two vectors of types K and V
 // << use std::vector<K> >>
+template <class K, class V>
 std::vector<K> k;
+template <class K, class V>
 std::vector<V> v;
 
 //public:
 //^this should be useless
 
 // The constructor should just initialize the vectors to be empty
-template <class K, class V>
+template <class K, class V>//have to declare its template when implementing
+                            //its fuctions
 simplemap::simplemap_t() {
     k = {};
     v = {};
@@ -28,7 +31,8 @@ simplemap::simplemap_t() {
 // Insert (key, val) if and only if the key is not currently present in
 // the map.  Returns true on success, false if the key was
 // already present.
-template <class K, class V>
+template <class K, class V> //have to declare its template when implementing
+                            //its fuctions
 bool simplemap::insert(K key, V val) {
 
     assert("Not Implemented");
@@ -52,7 +56,7 @@ bool simplemap::insert(K key, V val) {
 
 int main(int argc, char** argv) {
 
-    simplemap_t <char*, int> a = simplemap_t()
-        std::cout << a << std::endl;
+    simplemap_t <char*, int> a = simplemap_t();
+    std::cout << a << std::endl;
 
 }
