@@ -23,7 +23,7 @@ std::vector<int> v;
 //^this should be useless
 
 // The constructor should just initialize the vectors to be empty
-simplemap::simplemap_t() {
+simplemap_t() {
     k = {};
     v = {};
 }
@@ -33,7 +33,7 @@ simplemap::simplemap_t() {
 // already present.
 template <class K, class V> //have to declare its template when implementing
                             //its fuctions
-bool simplemap::insert(K key, V val) {
+bool insert(K key, V val) {
 
     assert("Not Implemented");
     return true;
