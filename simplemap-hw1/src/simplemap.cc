@@ -19,6 +19,7 @@ std::vector<V> v;
 //^this should be useless
 
 // The constructor should just initialize the vectors to be empty
+template <class K, class V>
 simplemap::simplemap_t() {
     k = {};
     v = {};
@@ -27,6 +28,7 @@ simplemap::simplemap_t() {
 // Insert (key, val) if and only if the key is not currently present in
 // the map.  Returns true on success, false if the key was
 // already present.
+template <class K, class V>
 bool simplemap::insert(K key, V val) {
 
     assert("Not Implemented");
@@ -50,7 +52,7 @@ bool simplemap::insert(K key, V val) {
 
 int main(int argc, char** argv) {
 
-    simplemap_t a = simplemap_t()
+    simplemap_t <char*, int> a = simplemap_t()
         std::cout << a << std::endl;
 
 }
