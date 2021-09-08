@@ -19,6 +19,12 @@ int main(int argc, char** argv) {
     printf ("%d",a.insert(j6, 6));
     printf ("%d",a.insert(j7, 7));
     printf ("%d",a.insert(j3, 8));
+    //FEATURE or BUG?
+    //Insert string "jordan" multiple time will success,
+    //but sert two j will fail.
+    //Can still lookup the correct value....
+
+
     //dereference using '->', deref the values pointer to exact vector
     //The  "[1]" dereference the list, can also do with starting "*"
     printf ("%d",(a.values->data())[0]); 
@@ -43,8 +49,9 @@ int main(int argc, char** argv) {
     printf ("%d",(a.values->data())[1]); //4  
     //Test pair
     printf("test pair");
-    printf("%d %d", a.lookup(j2).first, a.lookup(j2).second);
-    printf("%d %d", a.lookup(j6).first, a.lookup(j6).second);
+    printf("%d %d", a.lookup(j2).first, a.lookup(j2).second); //11 1
+    printf("%d %d", a.lookup(j6).first, a.lookup(j6).second); //6 1
+    printf("%d %d", a.lookup(j).first, a.lookup(j).second);   //0 0
 
 
 
