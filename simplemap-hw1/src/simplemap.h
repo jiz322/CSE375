@@ -13,7 +13,7 @@
 
 #include <vector>
 #include <cassert>
-
+#include <stdlib.h>
 
 template <class K, class V>
 class simplemap_t {
