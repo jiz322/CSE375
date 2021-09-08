@@ -7,8 +7,8 @@ int main(int argc, char** argv) {
     char j[] = "jordan";
     char j2[] = "jord";
     a.insert(j, 1);
-    a.insert(j2, 1);
+    a.insert(j2, 11);
     a.insert(j, 2);
-    printf ("%d",(a.values->data())[0]);
+    printf ("%d",(a.values->data())[1]);
 
 }
