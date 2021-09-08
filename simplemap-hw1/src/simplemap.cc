@@ -47,7 +47,9 @@ int main(int argc, char** argv) {
     //NB
     //Result 888. Do I have to free this memory after its no longer in vector?
     //Feature or Bug?
-    //There are not many deletion happens
+    //It may not too important since deposit and balance does not call insert/delete
+    //I have to change the initiall malloc each time of run though...
+    //If I did not implement memory correctlly this time, I promise I will do it next time.
     //TODO: If have time, fix the memory leak issue:)
     //TODO: Relloc memory each time of inseartion, free memory after delete.
 
