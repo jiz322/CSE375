@@ -38,7 +38,7 @@ class simplemap_t {
 
         for (std::vector<int>::iterator it = key.begin(); it != key.end(); ++it){
             if (key == *it){
-                return false
+                return false;
             }
         }
         keys->push_back (key);
