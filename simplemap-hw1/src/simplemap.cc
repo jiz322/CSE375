@@ -35,7 +35,9 @@ int main(int argc, char** argv) {
     printf("test Remove");
     printf ("%d",a.remove(j3)); //should be 1
     printf ("%d",(a.values->data())[6]); //???memory leak?
-    printf ("%d",(a.remove(j))); 
+    //Result 888. Do I have to free this memory after its no longer in vector?
+    printf ("%d",a.remove(j3)); //should be 0
+    printf ("%d",(a.remove(j))); //1
     printf ("%d",(a.values->data())[0]); //11
 
 
