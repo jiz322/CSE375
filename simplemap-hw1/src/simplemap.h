@@ -29,8 +29,15 @@ class simplemap_t {
 
     // The constructor should just initialize the vectors to be empty
     simplemap_t() {
+        //Question: should I increase the memory each time of insert?
+        //Or should I malloc the whole vector in this constructor.
+        //I guess it makes no difference in this project if number of entries keep constant.. but 
+        //is these a solution better than another in general?
+        //(I guess it's better to increase memory when insert)
         keys = (std::vector<K , std::allocator<K>> *)malloc(100);
         values = (std::vector<V , std::allocator<V>> *)malloc(100);
+
+        //Another student says he uses c++'s map library. Good or bad?
     }
 
 
@@ -74,7 +81,14 @@ class simplemap_t {
     // and return true; if key is not present in the data structure, return
     // false.
     bool update(K key, V val) {
-        assert("Not Implemented");
+        for (auto i = keys->begin(); i != keys->end(); ++i)
+            if (*i == key)
+                j = values->begin();
+                //Compute the location of destination value
+                j = j + (i - keys->begin());
+                //Replace
+                *j = val;
+                return true;
         return false;
     }
 
