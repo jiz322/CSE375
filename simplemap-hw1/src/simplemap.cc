@@ -32,6 +32,7 @@ int main(int argc, char** argv) {
     printf ("%d",(a.values->data())[6]); 
     //get expected digit 81888, test succes!
     //Test Remove
+    printf("test Remove");
     printf ("%d",a.remove(j3)); //should be 1
     printf ("%d",(a.values->data())[6]); //???memory leak?
     printf ("%d",(a.remove(j))); 
