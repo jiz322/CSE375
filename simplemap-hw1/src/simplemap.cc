@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
     printf ("%d",b.insert(1, 0.1));
     printf ("%d",b.insert(2, 0.2));
     printf ("%d",b.insert(3, 0.3));
-    printf("%d %d", b.lookup(1).first, b.lookup(1).second); //1.1, 1
-    printf("%d %d", b.lookup(4).first, b.lookup(4).second); //0 false
+    printf("%d %f", b.lookup(1).first, b.lookup(1).second); //1.1, 1
+    printf("%d %f", b.lookup(4).first, b.lookup(4).second); //0 false
 
 }
