@@ -27,8 +27,8 @@ class simplemap_t {
 
     // The constructor should just initialize the vectors to be empty
     simplemap_t() {
-        k = var(100000000, 0);
-        v = var(100000000, 0);
+        k = {};
+        v = {};
     }
 
 
