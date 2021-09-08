@@ -83,8 +83,7 @@ class simplemap_t {
     bool update(K key, V val) {
         for (auto i = keys->begin(); i != keys->end(); ++i)
             if (*i == key)
-                auto j;
-                j = values->begin();
+                auto j = values->begin();
                 //Compute the location of destination value
                 j = j + (i - keys->begin());
                 //Replace
