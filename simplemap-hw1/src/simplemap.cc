@@ -39,6 +39,7 @@ int main(int argc, char** argv) {
     printf ("%d",a.remove(j3)); //should be 0
     printf ("%d",(a.remove(j))); //1
     printf ("%d",(a.values->data())[0]); //11
+    printf ("%d",(a.values->data())[1]); //4  
 
 
 
