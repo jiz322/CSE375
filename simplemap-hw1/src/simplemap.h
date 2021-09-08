@@ -23,6 +23,7 @@ class simplemap_t {
   public:
       // Define the two vectors of types K and V
 	// << use std::vector<K> >>
+    //QUESTION: Is it  okay to make them public?????
     std::vector<K> *keys;
     std::vector<V> *values;
 
