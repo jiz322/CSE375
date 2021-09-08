@@ -115,7 +115,13 @@ class simplemap_t {
     // Be careful not to share the memory of the map with application threads, you might
     // get unexpected race conditions
     std::pair<V, bool> lookup(K key) {
-        assert("Not Implemented");
+        for (auto i = keys->begin(); i != keys->end(); ++i)
+            if (*i == key){
+                auto j = values->begin();
+                //Compute the location of destination value
+                j = j + (i - keys->begin());
+                return std::make_pair(*j, true);
+            }
         //TO DO: the following is a default return value, do not use it!
         return std::make_pair(0, false);
     }

@@ -11,14 +11,14 @@ int main(int argc, char** argv) {
     char j5[] = "jordan";
     char j6[] = "jordan";
     char j7[] = "jordan";
-    a.insert(j, 1);
-    a.insert(j2, 11);
-    a.insert(j, 2);
-    a.insert(j4, 4);
-    a.insert(j5, 5);
-    a.insert(j6, 6);
-    a.insert(j7, 7);
-    a.insert(j3, 8);
+    printf ("%d",a.insert(j, 1));
+    printf ("%d",a.insert(j2, 11));
+    printf ("%d",a.insert(j, 2));
+    printf ("%d",a.insert(j4, 4));
+    printf ("%d",a.insert(j5, 5));
+    printf ("%d",a.insert(j6, 6));
+    printf ("%d",a.insert(j7, 7));
+    printf ("%d",a.insert(j3, 8));
     //dereference using '->', deref the values pointer to exact vector
     //The  "[1]" dereference the list, can also do with starting "*"
     printf ("%d",(a.values->data())[0]); 
@@ -35,11 +35,14 @@ int main(int argc, char** argv) {
     printf("test Remove");
     printf ("%d",a.remove(j3)); //should be 1
     printf ("%d",(a.values->data())[6]); //???memory leak?
+    //NB
     //Result 888. Do I have to free this memory after its no longer in vector?
     printf ("%d",a.remove(j3)); //should be 0
     printf ("%d",(a.remove(j))); //1
     printf ("%d",(a.values->data())[0]); //11
     printf ("%d",(a.values->data())[1]); //4  
+    //Test pair
+    printf("%d %d", a.lookup(j2).first, a.lookup(j2).second);
 
 
 
