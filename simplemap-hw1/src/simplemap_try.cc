@@ -6,7 +6,7 @@
 #include <iostream>
 
 using namespace std;
-//Since header file is the header of cc file, 
+//Since hekader file is the header of cc file, 
 //I try to omit many declarations here
 
 //template <class K, class V>
