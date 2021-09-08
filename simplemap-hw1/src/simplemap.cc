@@ -26,6 +26,7 @@ int main(int argc, char** argv) {
     //This can be fixed by using string comparision instead of "==" in insert function
     //But right now I do not think it matters for this project...
     //TODO (if have time) fix the bug mentioned above
+    //NB: we willl use int & fload for test, so this is not an issue.
 
 
     //dereference using '->', deref the values pointer to exact vector
@@ -63,7 +64,13 @@ int main(int argc, char** argv) {
     printf("%d %d", a.lookup(j6).first, a.lookup(j6).second); //6 1
     printf("%d %d", a.lookup(j).first, a.lookup(j).second);   //0 0
 
-
-
+    //Test Int&float
+    simplemap_t<int, float> b = simplemap_t<int, float> ();
+    printf ("%d",b.insert(1, 0.1));
+    printf ("%d",b.insert(2, 0.2));
+    printf ("%d",b.insert(3, 0.3));
+    printf ("%d",b.insert(1, 0.1));
+    printf ("%d",b.insert(2, 0.2));
+    printf ("%d",b.insert(3, 0.3));
 
 }
