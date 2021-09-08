@@ -6,8 +6,8 @@ int main(int argc, char** argv) {
     char j[] = "jordan";
     char j2[] = "jord";
     a.insert(j, 1);
-    //a.insert(j2, 1);
-   // a.insert(j, 2);
+    a.insert(j2, 1);
+    a.insert(j, 2);
    // std::cout << &a.values << std::endl;
 
 }
