@@ -18,12 +18,13 @@
 template <class K, class V>
 class simplemap_t {
 
-    // Define the two vectors of types K and V
+
+
+  public:
+      // Define the two vectors of types K and V
 	// << use std::vector<K> >>
     std::vector<K> *keys;
     std::vector<V> *values;
-
-  public:
 
     // The constructor should just initialize the vectors to be empty
     simplemap_t() {
