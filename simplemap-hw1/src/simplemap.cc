@@ -65,6 +65,7 @@ int main(int argc, char** argv) {
     printf("%d %d", a.lookup(j).first, a.lookup(j).second);   //0 0
 
     //Test Int&float
+    printf("test Int and float");
     simplemap_t<int, float> b = simplemap_t<int, float> ();
     printf ("%d",b.insert(1, 0.1));
     printf ("%d",b.insert(2, 0.2));
