@@ -9,6 +9,6 @@ int main(int argc, char** argv) {
     a.insert(j, 1);
     a.insert(j2, 1);
     a.insert(j, 2);
-    printf ("%d",*a.values);
+    printf ("%d",*a.values->data());
 
 }
