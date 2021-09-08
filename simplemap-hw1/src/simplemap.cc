@@ -44,6 +44,7 @@ int main(int argc, char** argv) {
     //Test pair
     printf("test pair");
     printf("%d %d", a.lookup(j2).first, a.lookup(j2).second);
+    printf("%d %d", a.lookup(j6).first, a.lookup(j6).second);
 
 
 
