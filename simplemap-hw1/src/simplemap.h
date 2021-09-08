@@ -96,7 +96,16 @@ class simplemap_t {
     // Remove the (key, val) pair if it is present in the data structure.
     // Returns true on success, false if the key was not already present.
     bool remove(K key) {
-        assert("Not Implemented");
+        for (auto i = keys->begin(); i != keys->end(); ++i)
+            if (*i == key){
+                auto j = values->begin();
+                //Compute the location of destination value
+                j = j + (i - keys->begin());
+                //Erase
+                keys->erase(i);
+                values->erase(j);
+                return true;
+            }
         return false;
     }
 

@@ -23,11 +23,20 @@ int main(int argc, char** argv) {
     //The  "[1]" dereference the list, can also do with starting "*"
     printf ("%d",(a.values->data())[0]); 
     printf ("%d",a.values->size()); // Result 2
+    //Insert test succes!
+    //Test Update
     //CANNOT PASS STRING DIRECTLY!!!!!!!!!
     printf ("%d",a.update(j, 666)); 
     printf ("%d",(a.values->data())[6]); 
     printf ("%d",a.update(j3, 888)); 
     printf ("%d",(a.values->data())[6]); 
+    //get expected digit 81888, test succes!
+    //Test Remove
+    printf ("%d",a.remove(j3)); //should be 1
+    printf ("%d",(a.values->data())[6]); //???memory leak?
+    printf ("%d",(a.remove(j))); 
+    printf ("%d",(a.values->data())[0]); //11
+
 
 
 
