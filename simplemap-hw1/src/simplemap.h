@@ -43,9 +43,9 @@ class simplemap_t {
     //            return false;
     //        }
     //    }
-        for (auto i = keys->begin(); i != keys->end(); ++i)
-            if (*i == key)
-                return false;
+    //    for (auto i = keys->begin(); i != keys->end(); ++i)
+    //        if (*i == key)
+    //            return false;
         keys->push_back (key);
         values->push_back (val);
     	
