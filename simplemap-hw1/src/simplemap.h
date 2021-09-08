@@ -36,11 +36,16 @@ class simplemap_t {
     // already present.
     bool insert(K key, V val) {
 
-        for (std::vector<int>::iterator it = key.begin(); it != key.end(); ++it){
-            if (key == *it){
+        //error: request for member ‘end’ in ‘key’, which is of non-class type ‘char*’
+        //error: forbids comparison between pointer and integer (key == *it)
+    //    for (std::vector<int>::iterator it = key.begin(); it != key.end(); ++it){
+    //        if (key == *it){
+    //            return false;
+    //        }
+    //    }
+        for (auto i = keys->begin(); i != keys->end(); ++i)
+            if (*i == key)
                 return false;
-            }
-        }
         keys->push_back (key);
         values->push_back (val);
     	
