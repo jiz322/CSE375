@@ -42,6 +42,7 @@ int main(int argc, char** argv) {
     printf ("%d",(a.values->data())[0]); //11
     printf ("%d",(a.values->data())[1]); //4  
     //Test pair
+    printf("test pair");
     printf("%d %d", a.lookup(j2).first, a.lookup(j2).second);
 
 
