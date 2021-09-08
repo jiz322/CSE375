@@ -11,7 +11,9 @@ int main(int argc, char** argv) {
     a.insert(j, 2);
     //dereference using '->', deref the values pointer to exact vector
     //The  "[1]" dereference the list, can also do with starting "*"
-    printf ("%d",(a.values->data())[1]); // Result 11
+    printf ("%d",(a.values->data())[0]); // Result 11
     printf ("%d",a.values->size()); // Result 2
+    printf ("%d",a.update("jordan", 666)); 
+    printf ("%d",(a.values->data())[0]); // Result 11
 
 }
