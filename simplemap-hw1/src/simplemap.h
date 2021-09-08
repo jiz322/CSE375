@@ -27,8 +27,8 @@ class simplemap_t {
 
     // The constructor should just initialize the vectors to be empty
     simplemap_t() {
-        keys = (std::vector<K , std::allocator<K > >*)malloc(100);
-        values = (std::vector<V , std::allocator<V > >*)malloc(100);
+        keys = (std::vector<K , std::allocator<K>> *)malloc(100);
+        values = (std::vector<V , std::allocator<V>> *)malloc(100);
     }
 
 
