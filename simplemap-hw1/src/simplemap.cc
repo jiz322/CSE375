@@ -23,6 +23,9 @@ int main(int argc, char** argv) {
     //Insert string "jordan" multiple time will success,
     //but sert two j will fail.
     //Can still lookup the correct value....
+    //This can be fixed by using string comparision instead of "==" in insert function
+    //But right now I do not think it matters for this project...
+    //TODO (if have time) fix the bug mentioned above
 
 
     //dereference using '->', deref the values pointer to exact vector
