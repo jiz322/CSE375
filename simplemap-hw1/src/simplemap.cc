@@ -9,6 +9,8 @@ int main(int argc, char** argv) {
     a.insert(j, 1);
     a.insert(j2, 11);
     a.insert(j, 2);
+    //dereference using '->', deref the values pointer to exact vector
+    //The  "[1]" dereference the list, can also do with starting "*"
     printf ("%d",(a.values->data())[1]);
 
 }
