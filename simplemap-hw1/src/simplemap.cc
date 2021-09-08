@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
     //The  "[1]" dereference the list, can also do with starting "*"
     printf ("%d",(a.values->data())[0]); // Result 11
     printf ("%d",a.values->size()); // Result 2
-    printf ("%d",a.update("jordan", 666)); 
+    printf ("%d",a.update("jorda", 666)); 
     printf ("%d",(a.values->data())[0]); // Result 11
 
 }
