@@ -12,6 +12,7 @@
 #include "simplemap.h"
 #include <stdio.h>
 #include <random>
+#include <thread>
 	    void printer(int k, float v) {
 			std::cout<<"<"<<k<<","<<v<<">"<< std::endl;
 	}
