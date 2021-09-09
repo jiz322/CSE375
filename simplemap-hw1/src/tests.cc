@@ -21,7 +21,7 @@
 
 	void run_custom_tests(config_t& cfg) {
 		std::mutex mtx; 
-		mutable std::shared_mutex mutex_;
+		std::shared_mutex mutex_;
 		// Step 1
 		// Define a simplemap_t of types <int,float>
 		// this map represents a collection of bank accounts:
