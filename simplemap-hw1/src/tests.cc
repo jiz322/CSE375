@@ -9,7 +9,6 @@
 #include <ctime>
 #include "config_t.h"
 #include "tests.h"
-
 #include "simplemap.h"
 
 	    void printer(int k, float v) {
@@ -28,7 +27,8 @@
 		// Initialize the map in a way the sum of the amounts of
 		// all the accounts in the map is 100000
 		// Jordan: "Let's have 10 accounts each 10000.00 bucks"
-		for (int i = 0; i < 10; i++){
+		int max_accounts = 10;
+		for (int i = 0; i < max_accounts; i++){
 			a.insert(i, 10000);
 		}
 		// Step 3
@@ -41,12 +41,40 @@
 		// no operation should happen on B1 and B2 (or on the whole map?)
 		// while the function executes.
 
+		//ramdom generator
+    	std::random_device dev;
+    	std::mt19937 rng(dev());
+		// distribution in range [0, maxaccount]
+    	std::uniform_int_distribution<std::mt19937::result_type> dist_max_accounts(0,max_accounts); 
+		// distribution in range [0, 9]
+		std::uniform_int_distribution<std::mt19937::result_type> dist10(0,9);
+		//Try lambda function here
+		auto deposit = [](){
+			int random1 = dist_max_accounts(rng);
+			int random2 = dist_max_accounts(rng);
+			//random1 and ramdom2 have to be different
+			while (random1 == random2){
+				random2 = dist_max_accounts(rng);
+			}
+			// amount ranges from 0.00 to 9.99
+			float amount = dist10(rng) + (float)dist10(rng)/10 + (float)dist10(rng)/100;
+			float balance1 = a.lookup(random1).second;
+			float balance2 = a.lookup(random2).second;
+			a.update(random1, balance1+amount);
+			a.update(random2, balance2-amount);
+		};
 		// Step 4
 		// Define a function "balance" that sums the amount of all the
 		// bank accounts in the map. In order to have a consistent result,
 		// the execution of this function should happen atomically:
 		// no other deposit operations should interleave.
-
+		auto balance = [](){
+			sum = 0;
+			for (auto i = a.values->begin(); i != values->end(); ++i){
+				sum = sum + *i;
+			}
+			return sum;
+		};
 		// Step 5
 		// Define a function 'do_work', which has a for-loop that
 		// iterates for config_t.iters times. In each iteration,
