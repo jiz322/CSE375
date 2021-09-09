@@ -71,8 +71,9 @@
 			float amount = dist100(rng);
 			float balance1 = map.lookup(random1).first;
 			float balance2 = map.lookup(random2).first;
-			map.update(random1, balance1+amount);
 			map.update(random2, balance2-amount);
+			map.update(random1, balance1+amount);
+
 		};
 		// Step 4
 		// Define a function "balance" that sums the amount of all the
@@ -99,7 +100,6 @@
 		// with the main thread.
 		std::mutex mtx; 
 		auto do_work = [&](){
-			mtx.lock();
 			for (int i = 0; i < cfg.iters; i++){
 				if (dist100(rng) < 95){
 					deposit();
@@ -108,7 +108,6 @@
 					balance();
 				}
 			}
-			mtx.unlock();
 		};
 		// Step 6
 		// The evaluation should be performed in the following way:
