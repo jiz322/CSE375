@@ -139,7 +139,7 @@ int main(int argc, char** argv) {
         while (random1 == random2){
             random2 = dist_max_accounts(rng);
         }
-        float amount = dist10(rng) + (float)dist10(rng)%10/10 + (float)dist10(rng)%10/100;
+        float amount = dist10(rng) + ((float)dist10(rng))/10 + ((float)dist10(rng))/100;
         float balance1 = a.lookup(random1).first;
         float balance2 = a.lookup(random2).first;
         a.update(random1, balance1+amount);
