@@ -97,6 +97,7 @@
 		// time needed to perform the entire for-loop. This time will be shared with
 		// the main thread once the thread executing the 'do_work' joins its execution
 		// with the main thread.
+		std::mutex mtx; 
 		auto do_work = [&](){
 			mtx.lock();
 			for (int i = 0; i < cfg.iters; i++){
