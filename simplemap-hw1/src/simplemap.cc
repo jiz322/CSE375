@@ -116,4 +116,46 @@ int main(int argc, char** argv) {
     float amount = dist10(rng) + (float)dist10(rng)/10 + (float)dist10(rng)/100;
     printf("%f", amount); 
 
+    //Test tests.cc
+    simplemap_t<int, float> a = simplemap_t<int, float> ();	
+    int max_accounts = 10;
+    for (int i = 0; i < max_accounts; i++){
+        a.insert(i, 10000);
+    }
+
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist_max_accounts(0,max_accounts); 
+    std::uniform_int_distribution<std::mt19937::result_type> dist10(0,9);
+    std::uniform_int_distribution<std::mt19937::result_type> dist100(0,99);
+    auto deposit = [](){
+        int random1 = dist_max_accounts(rng);
+        int random2 = dist_max_accounts(rng);
+        while (random1 == random2){
+            random2 = dist_max_accounts(rng);
+        }
+        float amount = dist10(rng) + (float)dist10(rng)/10 + (float)dist10(rng)/100;
+        float balance1 = a.lookup(random1).second;
+        float balance2 = a.lookup(random2).second;
+        a.update(random1, balance1+amount);
+        a.update(random2, balance2-amount);
+    };
+    auto balance = [](){
+        sum = 0;
+        for (auto i = a.values->begin(); i != values->end(); ++i){
+            sum = sum + *i;
+        }
+        printf("%f", sum);
+    };
+    auto do_work = [](){
+        for (i = 0; i < 10000; i++){
+            if (dist100(rng) < 95){
+                deposit();
+            }
+            else{
+                balance();
+            }
+        }
+    }
+    do_work();
 }
