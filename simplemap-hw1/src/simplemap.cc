@@ -153,7 +153,7 @@ int main(int argc, char** argv) {
         printf("%d ", (int)sum);
     };
     auto do_work = [&](){
-        for (int i = 0; i < 10000; i++){
+        for (int i = 0; i < 100; i++){
             if (dist100(rng) < 95){
                 deposit();
             }
