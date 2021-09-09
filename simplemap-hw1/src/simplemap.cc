@@ -139,18 +139,28 @@ int main(int argc, char** argv) {
         while (random1 == random2){
             random2 = dist_max_accounts(rng);
         }
+        
         float amount = 5;
         float balance1 = a.lookup(random1).first;
         float balance2 = a.lookup(random2).first;
+        printf("\n");
+        printf("random1 : %d \n", random1);
+        printf("random2 : %d \n", random2);
+        printf("balance1 %d \n", int(balance1));
+        printf("balance1 %d \n", int(balance2));
         a.update(random1, balance1+amount);
         a.update(random2, balance2-amount);
+        float balance3 = a.lookup(random1).first;
+        float balance4 = a.lookup(random2).first;
+        printf("balance1after %d \n", int(balance3));
+        printf("balance2after %d \n", int(balance4));
     };
     auto balance = [&](){
         float sum = 0;
         for (auto i = a.values->begin(); i != a.values->end(); ++i){
             sum = sum + *i;
         }
-        printf("%d ", (int)sum);
+        #printf("%d ", (int)sum);
     };
     auto do_work = [&](){
         for (int i = 0; i < 1000; i++){
