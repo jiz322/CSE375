@@ -27,9 +27,9 @@
 		// Initialize the map in a way the sum of the amounts of
 		// all the accounts in the map is 100000
 		// Jordan: "Let's have 10 accounts each 10000.00 bucks"
-		int max_accounts = 10;
+		int max_accounts = config_t.key_max;
 		for (int i = 0; i < max_accounts; i++){
-			a.insert(i, 10000);
+			a.insert(i, 100000/ax_accounts);
 		}
 		// Step 3
 		// Define a function "deposit" that selects two random bank accounts
