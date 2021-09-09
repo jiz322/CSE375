@@ -106,5 +106,5 @@ int main(int argc, char** argv) {
     std::cout << dist10(rng) << std::endl;
     //Yes, It is okay.
     float amount = dist10(rng) + (float)dist10(rng)/10 + (float)dist10(rng)/100;
-    printf("%d", amount); 
+    printf("%f", amount); 
 }
