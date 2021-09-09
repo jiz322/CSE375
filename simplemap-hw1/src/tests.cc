@@ -70,10 +70,10 @@
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
 			float balance1 = map.lookup(random1).first;
+			map.update(random1, balance1+amount);
 			float balance2 = map.lookup(random2).first;
 			map.update(random2, balance2-amount);
-			map.update(random1, balance1+amount);
-
+			
 		};
 		// Step 4
 		// Define a function "balance" that sums the amount of all the
