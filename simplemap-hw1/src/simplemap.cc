@@ -90,12 +90,11 @@ int main(int argc, char** argv) {
     }
     //Yes!! Lamda works!
 
-
-    //Try ramdom generator
     printf("try random");
+    //ramdom generator
     std::random_device dev;
     std::mt19937 rng(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> dist10(0,9); // distribution in range [1, 6]
+    std::uniform_int_distribution<std::mt19937::result_type> dist10(0,9); // distribution in range [0, 9]
     std::cout << dist10(rng) << std::endl;
     std::cout << dist10(rng) << std::endl;
     std::cout << dist10(rng) << std::endl;
@@ -105,4 +104,7 @@ int main(int argc, char** argv) {
     std::cout << dist10(rng) << std::endl;
     std::cout << dist10(rng) << std::endl;
     std::cout << dist10(rng) << std::endl;
+    //Yes, It is okay.
+    float amount = dist10(rng) + (float)dist10(rng)/10 + (float)dist10(rng)/100;
+    printf("%d", amount); 
 }
