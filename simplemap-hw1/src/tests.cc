@@ -30,7 +30,7 @@
 		// Jordan: "Let's have 10 accounts each 10000.00 bucks"
 		int max_accounts = cfg.key_max;
 		for (int i = 0; i < max_accounts; i++){
-			map.insert(i, 100000/max_accounts);
+			map.insert(i, 100000.0/max_accounts);
 		}
 		// Step 3
 		// Define a function "deposit" that selects two random bank accounts
