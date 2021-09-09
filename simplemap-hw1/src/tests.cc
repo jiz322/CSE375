@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <random>
 #include <thread>
+#include <mutex>
 	    void printer(int k, float v) {
 			std::cout<<"<"<<k<<","<<v<<">"<< std::endl;
 	}
@@ -97,6 +98,7 @@
 		// the main thread once the thread executing the 'do_work' joins its execution
 		// with the main thread.
 		auto do_work = [&](){
+			mtx.lock();
 			for (int i = 0; i < cfg.iters; i++){
 				if (dist100(rng) < 95){
 					deposit();
@@ -105,6 +107,7 @@
 					balance();
 				}
 			}
+			mtx.unlock();
 		};
 		// Step 6
 		// The evaluation should be performed in the following way:
