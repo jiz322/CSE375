@@ -14,14 +14,13 @@
 #include <random>
 #include <thread>
 #include <mutex>
-#include <shared_mutex>
 	    void printer(int k, float v) {
 			std::cout<<"<"<<k<<","<<v<<">"<< std::endl;
 	}
 
 	void run_custom_tests(config_t& cfg) {
 		std::mutex mtx; 
-		mutable std::shared_mutex mutex_;
+		std::shared_mutex smtx;
 		// Step 1
 		// Define a simplemap_t of types <int,float>
 		// this map represents a collection of bank accounts:
@@ -72,20 +71,20 @@
 			//It should be 202 knowledge but I forgot...
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
-			std::unique_lock lock(mutex_);
+			mtx.lock();
 			float balance1 = map.lookup(random1).first;
 			map.update(random1, balance1+amount);
 			float balance2 = map.lookup(random2).first;
 			map.update(random2, balance2-amount);
-			
+			mtx.unlock();
 		};
 		// Step 4
 		// Define a function "balance" that sums the amount of all the
 		// bank accounts in the map. In order to have a consistent result,
 		// the execution of this function should happen atomically:
 		// no other deposit operations should interleave.
+		smtx.lock();
 		auto balance = [&](){
-			std::shared_lock lock(mutex_);
 			float sum = 0;
 			for (auto i = map.values->begin(); i != map.values->end(); ++i){
 				sum = sum + *i;
@@ -93,6 +92,7 @@
 			//printf("%f", sum);
 			return sum;
 		};
+		smtx.unlock();
 		// Step 5
 		// Define a function 'do_work', which has a for-loop that
 		// iterates for config_t.iters times. In each iteration,
