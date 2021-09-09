@@ -117,6 +117,14 @@
 
 		// Make sure evey invocation of the "balance" function returns 100000.
 
+		//Create a vector of threads
+		std::vector<std::thread> threads;
+		for (int i = 0; i < cfg.threads; i++){
+			threads.push_back(std::thread(do_work));
+		}
+		for (auto &th : threads){
+			th.join();
+		}
 		// Step 7
 		// Now configure your application to perform the SAME TOTAL amount
 		// of iterations just executed, but all done by a single thread.
