@@ -83,7 +83,7 @@
 			for (auto i = map.values->begin(); i != map.values->end(); ++i){
 				sum = sum + *i;
 			}
-			printf("%f", sum);
+			//printf("%f", sum);
 		};
 		// Step 5
 		// Define a function 'do_work', which has a for-loop that
@@ -125,6 +125,7 @@
 		}
 		for (auto &th : threads){
 			th.join();
+			printf("The balance after join is %f", balance());
 		}
 		// Step 7
 		// Now configure your application to perform the SAME TOTAL amount
