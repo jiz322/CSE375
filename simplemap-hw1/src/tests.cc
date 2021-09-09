@@ -22,12 +22,15 @@
 		// this map represents a collection of bank accounts:
 		// each account has a unique ID of type int;
 		// each account has an amount of fund of type float.
-
+   		simplemap_t<int, float> a = simplemap_t<int, float> ();	
 		// Step 2
 		// Populate the entire map with the 'insert' function
 		// Initialize the map in a way the sum of the amounts of
 		// all the accounts in the map is 100000
-
+		// Jordan: "Let's have 10 accounts each 10000.00 bucks"
+		for (int i = 0; i < 10; i++){
+			a.insert(i, 10000);
+		}
 		// Step 3
 		// Define a function "deposit" that selects two random bank accounts
 		// and an amount. This amount is subtracted from the amount
