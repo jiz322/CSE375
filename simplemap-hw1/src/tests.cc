@@ -20,7 +20,7 @@
 
 	void run_custom_tests(config_t& cfg) {
 		std::mutex mtx; 
-		std::shared_mutex smtx;
+		std::shared_lock smtx;
 		// Step 1
 		// Define a simplemap_t of types <int,float>
 		// this map represents a collection of bank accounts:
