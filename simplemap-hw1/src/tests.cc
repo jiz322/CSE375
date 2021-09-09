@@ -28,7 +28,7 @@
 		// Initialize the map in a way the sum of the amounts of
 		// all the accounts in the map is 100000
 		// Jordan: "Let's have 10 accounts each 10000.00 bucks"
-		int max_accounts = config_t.key_max;
+		int max_accounts = cfg.key_max;
 		for (int i = 0; i < max_accounts; i++){
 			map.insert(i, 100000/max_accounts);
 		}
@@ -95,7 +95,7 @@
 		// the main thread once the thread executing the 'do_work' joins its execution
 		// with the main thread.
 		auto do_work = [&](){
-			for (int i = 0; i < config_t.iters; i++){
+			for (int i = 0; i < cfg.iters; i++){
 				if (dist100(rng) < 95){
 					deposit();
 				}
