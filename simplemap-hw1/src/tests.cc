@@ -66,7 +66,7 @@
 			//I seems float lose accuracy. 
 			//It should be 202 knowledge but I forgot...
 			// How to fix it? (I guess I do not have time to fix it before Friday)
-			float amount = dist10(rng);
+			float amount = dist100(rng);
 			float balance1 = map.lookup(random1).first;
 			float balance2 = map.lookup(random2).first;
 			map.update(random1, balance1+amount);
