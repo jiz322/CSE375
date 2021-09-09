@@ -34,8 +34,8 @@ class simplemap_t {
         //I guess it makes no difference in this project if number of entries keep constant.. but 
         //is these a solution better than another in general?
         //(I guess it's better to increase memory when insert)
-        keys = (std::vector<K , std::allocator<K>> *)malloc(100);
-        values = (std::vector<V , std::allocator<V>> *)malloc(100);
+        keys = (std::vector<K , std::allocator<K>> *)malloc(800000);
+        values = (std::vector<V , std::allocator<V>> *)malloc(800000);
 
         //Another student says he uses c++'s map library. Good or bad?
     }
