@@ -10,7 +10,8 @@
 #include "config_t.h"
 #include "tests.h"
 #include "simplemap.h"
-
+#include <stdio.h>
+#include <random>
 	    void printer(int k, float v) {
 			std::cout<<"<"<<k<<","<<v<<">"<< std::endl;
 	}
