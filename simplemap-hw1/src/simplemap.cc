@@ -107,4 +107,9 @@ int main(int argc, char** argv) {
     //Yes, It is okay.
     float amount = dist10(rng) + (float)dist10(rng)/10 + (float)dist10(rng)/100;
     printf("%f", amount); 
+
+    auto balance = [](){
+        return "yeyeyeye";
+	}
+    printf("%s", balance());
 }
