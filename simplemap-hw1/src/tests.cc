@@ -19,6 +19,7 @@
 	}
 
 	void run_custom_tests(config_t& cfg) {
+		std::mutex mtx; 
 		// Step 1
 		// Define a simplemap_t of types <int,float>
 		// this map represents a collection of bank accounts:
@@ -68,11 +69,14 @@
 			//I seems float lose accuracy. 
 			//It should be 202 knowledge but I forgot...
 			// How to fix it? (I guess I do not have time to fix it before Friday)
+			
+			mtx.lock();
 			float amount = dist100(rng);
 			float balance1 = map.lookup(random1).first;
 			map.update(random1, balance1+amount);
 			float balance2 = map.lookup(random2).first;
 			map.update(random2, balance2-amount);
+			mtx.unlock();
 			
 		};
 		// Step 4
@@ -98,7 +102,7 @@
 		// time needed to perform the entire for-loop. This time will be shared with
 		// the main thread once the thread executing the 'do_work' joins its execution
 		// with the main thread.
-		std::mutex mtx; 
+
 		auto do_work = [&](){
 			for (int i = 0; i < cfg.iters; i++){
 				if (dist100(rng) < 95){
