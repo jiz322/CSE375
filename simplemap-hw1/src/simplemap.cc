@@ -118,7 +118,7 @@ int main(int argc, char** argv) {
 
     //Test tests.cc
     simplemap_t<int, float> a = simplemap_t<int, float> ();	
-    int max_accounts = 10;
+    int max_accounts = 100;
     for (int i = 0; i < max_accounts; i++){
         a.insert(i, 10000);
     }
