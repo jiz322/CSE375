@@ -130,7 +130,7 @@ int main(int argc, char** argv) {
 
     std::random_device dev;
     std::mt19937 rng(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> dist_max_accounts(0,max_accounts); 
+    std::uniform_int_distribution<std::mt19937::result_type> dist_max_accounts(0,max_accounts-1); 
     std::uniform_int_distribution<std::mt19937::result_type> dist10(0,9);
     std::uniform_int_distribution<std::mt19937::result_type> dist100(0,99);
     auto deposit = [&](){
@@ -143,24 +143,24 @@ int main(int argc, char** argv) {
         float amount = 5;
         float balance1 = a.lookup(random1).first;
         float balance2 = a.lookup(random2).first;
-        printf("\n");
-        printf("random1 : %d \n", random1);
-        printf("random2 : %d \n", random2);
-        printf("balance1 %d \n", int(balance1));
-        printf("balance1 %d \n", int(balance2));
+        // printf("\n");
+        // printf("random1 : %d \n", random1);
+        // printf("random2 : %d \n", random2);
+        // printf("balance1 %d \n", int(balance1));
+        // printf("balance1 %d \n", int(balance2));
         a.update(random1, balance1+amount);
         a.update(random2, balance2-amount);
-        float balance3 = a.lookup(random1).first;
-        float balance4 = a.lookup(random2).first;
-        printf("balance1after %d \n", int(balance3));
-        printf("balance2after %d \n", int(balance4));
+        // float balance3 = a.lookup(random1).first;
+        // float balance4 = a.lookup(random2).first;
+        // printf("balance1after %d \n", int(balance3));
+        // printf("balance2after %d \n", int(balance4));
     };
     auto balance = [&](){
         float sum = 0;
         for (auto i = a.values->begin(); i != a.values->end(); ++i){
             sum = sum + *i;
         }
-        //printf("%d ", (int)sum);
+        printf("%d ", (int)sum);
     };
     auto do_work = [&](){
         for (int i = 0; i < 1000; i++){

@@ -45,7 +45,7 @@
     	std::random_device dev;
     	std::mt19937 rng(dev());
 		// for select accounts to deposit
-    	std::uniform_int_distribution<std::mt19937::result_type> dist_max_accounts(0,max_accounts); 
+    	std::uniform_int_distribution<std::mt19937::result_type> dist_max_accounts(0,max_accounts-1); 
 		// for  deposit amount
 		std::uniform_int_distribution<std::mt19937::result_type> dist10(0,9);
 		// for do work
