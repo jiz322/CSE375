@@ -140,8 +140,8 @@ int main(int argc, char** argv) {
             random2 = dist_max_accounts(rng);
         }
         float amount = dist10(rng) + (float)dist10(rng)/10 + (float)dist10(rng)/100;
-        float balance1 = a.lookup(random1).second;
-        float balance2 = a.lookup(random2).second;
+        float balance1 = a.lookup(random1).first;
+        float balance2 = a.lookup(random2).first;
         a.update(random1, balance1+amount);
         a.update(random2, balance2-amount);
     };
