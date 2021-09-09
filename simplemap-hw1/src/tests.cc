@@ -84,6 +84,7 @@
 				sum = sum + *i;
 			}
 			//printf("%f", sum);
+			return sum;
 		};
 		// Step 5
 		// Define a function 'do_work', which has a for-loop that
