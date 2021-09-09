@@ -22,7 +22,7 @@
 		// this map represents a collection of bank accounts:
 		// each account has a unique ID of type int;
 		// each account has an amount of fund of type float.
-   		simplemap_t<int, float> a = simplemap_t<int, float> ();	
+   		simplemap_t<int, float> map = simplemap_t<int, float> ();	
 		// Step 2
 		// Populate the entire map with the 'insert' function
 		// Initialize the map in a way the sum of the amounts of
@@ -30,7 +30,7 @@
 		// Jordan: "Let's have 10 accounts each 10000.00 bucks"
 		int max_accounts = config_t.key_max;
 		for (int i = 0; i < max_accounts; i++){
-			a.insert(i, 100000/ax_accounts);
+			map.insert(i, 100000/max_accounts);
 		}
 		// Step 3
 		// Define a function "deposit" that selects two random bank accounts
@@ -67,10 +67,10 @@
 			//It should be 202 knowledge but I forgot...
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist10(rng);
-			float balance1 = a.lookup(random1).first;
-			float balance2 = a.lookup(random2).first;
-			a.update(random1, balance1+amount);
-			a.update(random2, balance2-amount);
+			float balance1 = map.lookup(random1).first;
+			float balance2 = map.lookup(random2).first;
+			map.update(random1, balance1+amount);
+			map.update(random2, balance2-amount);
 		};
 		// Step 4
 		// Define a function "balance" that sums the amount of all the
@@ -79,7 +79,7 @@
 		// no other deposit operations should interleave.
 		auto balance = [&](){
 			float sum = 0;
-			for (auto i = a.values->begin(); i != a.values->end(); ++i){
+			for (auto i = map.values->begin(); i != map.values->end(); ++i){
 				sum = sum + *i;
 			}
 			printf("%f", sum);
