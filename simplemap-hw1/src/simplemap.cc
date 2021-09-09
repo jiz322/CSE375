@@ -173,4 +173,6 @@ int main(int argc, char** argv) {
         }
     };
     do_work();
+    printf ("%f",(a.values->data())[0]);
+    printf ("%f",(a.values->data())[1000]);
 }
