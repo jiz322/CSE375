@@ -4,7 +4,7 @@
 #include <random>
 int main(int argc, char** argv) {
 
-    simplemap_t<char*, int> a = simplemap_t<char*, int> ();
+    simplemap_t<char*, int> c = simplemap_t<char*, int> ();
     char j[] = "jordan";
     char j2[] = "jord";
     char j3[] = "jordan";
@@ -12,14 +12,14 @@ int main(int argc, char** argv) {
     char j5[] = "jordan";
     char j6[] = "jordan";
     char j7[] = "jordan";
-    printf ("%d",a.insert(j, 1));
-    printf ("%d",a.insert(j2, 11));
-    printf ("%d",a.insert(j, 2));
-    printf ("%d",a.insert(j4, 4));
-    printf ("%d",a.insert(j5, 5));
-    printf ("%d",a.insert(j6, 6));
-    printf ("%d",a.insert(j7, 7));
-    printf ("%d",a.insert(j3, 8));
+    printf ("%d",c.insert(j, 1));
+    printf ("%d",c.insert(j2, 11));
+    printf ("%d",c.insert(j, 2));
+    printf ("%d",c.insert(j4, 4));
+    printf ("%d",c.insert(j5, 5));
+    printf ("%d",c.insert(j6, 6));
+    printf ("%d",c.insert(j7, 7));
+    printf ("%d",c.insert(j3, 8));
     //FEATURE or BUG?
     //Insert string "jordan" multiple time will success,
     //but sert two j will fail.
@@ -32,20 +32,20 @@ int main(int argc, char** argv) {
 
     //dereference using '->', deref the values pointer to exact vector
     //The  "[1]" dereference the list, can also do with starting "*"
-    printf ("%d",(a.values->data())[0]); 
-    printf ("%d",a.values->size()); // Result 2
+    printf ("%d",(c.values->data())[0]); 
+    printf ("%d",c.values->size()); // Result 2
     //Insert test succes!
     //Test Update
     //CANNOT PASS STRING DIRECTLY!!!!!!!!!
-    printf ("%d",a.update(j, 666)); 
-    printf ("%d",(a.values->data())[6]); 
-    printf ("%d",a.update(j3, 888)); 
-    printf ("%d",(a.values->data())[6]); 
+    printf ("%d",c.update(j, 666)); 
+    printf ("%d",(c.values->data())[6]); 
+    printf ("%d",c.update(j3, 888)); 
+    printf ("%d",(c.values->data())[6]); 
     //get expected digit 81888, test succes!
     //Test Remove
     printf("test Remove");
-    printf ("%d",a.remove(j3)); //should be 1
-    printf ("%d",(a.values->data())[6]); //???memory leak?
+    printf ("%d",c.remove(j3)); //should be 1
+    printf ("%d",(c.values->data())[6]); //???memory leak?
     //NB
     //Result 888. Do I have to free this memory after its no longer in vector?
     //Feature or Bug?
@@ -55,15 +55,15 @@ int main(int argc, char** argv) {
     //TODO: If have time, fix the memory leak issue:)
     //TODO: Relloc memory each time of inseartion, free memory after delete.
 
-    printf ("%d",a.remove(j3)); //should be 0
-    printf ("%d",(a.remove(j))); //1
-    printf ("%d",(a.values->data())[0]); //11
-    printf ("%d",(a.values->data())[1]); //4  
+    printf ("%d",c.remove(j3)); //should be 0
+    printf ("%d",(c.remove(j))); //1
+    printf ("%d",(c.values->data())[0]); //11
+    printf ("%d",(c.values->data())[1]); //4  
     //Test pair
     printf("test pair");
-    printf("%d %d", a.lookup(j2).first, a.lookup(j2).second); //11 1
-    printf("%d %d", a.lookup(j6).first, a.lookup(j6).second); //6 1
-    printf("%d %d", a.lookup(j).first, a.lookup(j).second);   //0 0
+    printf("%d %d", c.lookup(j2).first, c.lookup(j2).second); //11 1
+    printf("%d %d", c.lookup(j6).first, c.lookup(j6).second); //6 1
+    printf("%d %d", c.lookup(j).first, c.lookup(j).second);   //0 0
 
     //Test Int&float
     printf("test Int and float");
@@ -98,23 +98,23 @@ int main(int argc, char** argv) {
 
     //Yes!! Lamda return works!
 
-    printf("try random");
-    //ramdom generator
-    std::random_device dev;
-    std::mt19937 rng(dev());
-    std::uniform_int_distribution<std::mt19937::result_type> dist10(0,9); // distribution in range [0, 9]
-    std::cout << dist10(rng) << std::endl;
-    std::cout << dist10(rng) << std::endl;
-    std::cout << dist10(rng) << std::endl;
-    std::cout << dist10(rng) << std::endl;
-    std::cout << dist10(rng) << std::endl;
-    std::cout << dist10(rng) << std::endl;
-    std::cout << dist10(rng) << std::endl;
-    std::cout << dist10(rng) << std::endl;
-    std::cout << dist10(rng) << std::endl;
-    //Yes, It is okay.
-    float amount = dist10(rng) + (float)dist10(rng)/10 + (float)dist10(rng)/100;
-    printf("%f", amount); 
+    // printf("try random");
+    // //ramdom generator
+    // std::random_device dev;
+    // std::mt19937 rng(dev());
+    // std::uniform_int_distribution<std::mt19937::result_type> dist10(0,9); // distribution in range [0, 9]
+    // std::cout << dist10(rng) << std::endl;
+    // std::cout << dist10(rng) << std::endl;
+    // std::cout << dist10(rng) << std::endl;
+    // std::cout << dist10(rng) << std::endl;
+    // std::cout << dist10(rng) << std::endl;
+    // std::cout << dist10(rng) << std::endl;
+    // std::cout << dist10(rng) << std::endl;
+    // std::cout << dist10(rng) << std::endl;
+    // std::cout << dist10(rng) << std::endl;
+    // //Yes, It is okay.
+    // float amount = dist10(rng) + (float)dist10(rng)/10 + (float)dist10(rng)/100;
+    // printf("%f", amount); 
 
     //Test tests.cc
     simplemap_t<int, float> a = simplemap_t<int, float> ();	
@@ -156,6 +156,6 @@ int main(int argc, char** argv) {
                 balance();
             }
         }
-    }
+    };
     do_work();
 }
