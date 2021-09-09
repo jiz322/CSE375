@@ -120,7 +120,7 @@ int main(int argc, char** argv) {
     simplemap_t<int, float> a = simplemap_t<int, float> ();	
     int max_accounts = 100000;
     for (int i = 0; i < max_accounts; i++){
-        a.insert(i, 10000);
+        a.insert(i, 2);
     }
     float sum = 0;
     for (auto i = a.values->begin(); i != a.values->end(); ++i){
@@ -140,7 +140,7 @@ int main(int argc, char** argv) {
             random2 = dist_max_accounts(rng);
         }
         
-        float amount = 10;
+        float amount = 2;
         float balance1 = a.lookup(random1).first;
         float balance2 = a.lookup(random2).first;
         // printf("\n");
