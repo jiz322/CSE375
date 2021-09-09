@@ -19,8 +19,7 @@
 			std::cout<<"<"<<k<<","<<v<<">"<< std::endl;
 	}
 
-	void run_custom_tests(config_t& cfg) {
-		std::mutex mtx; 
+	void run_custom_tests(config_t& cfg) { 
 		std::shared_mutex mutex_;
 		// Step 1
 		// Define a simplemap_t of types <int,float>
