@@ -160,7 +160,7 @@ int main(int argc, char** argv) {
         for (auto i = a.values->begin(); i != a.values->end(); ++i){
             sum = sum + *i;
         }
-        #printf("%d ", (int)sum);
+        //printf("%d ", (int)sum);
     };
     auto do_work = [&](){
         for (int i = 0; i < 1000; i++){
