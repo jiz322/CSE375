@@ -110,6 +110,6 @@ int main(int argc, char** argv) {
 
     auto balance = [](){
         return "yeyeyeye";
-	}
+	};
     printf("%s", balance());
 }
