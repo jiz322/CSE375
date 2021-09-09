@@ -126,7 +126,7 @@
 		}
 		for (auto &th : threads){
 			th.join();
-			printf("The balance after join is %f", balance());
+			printf("\nThe balance after join is %f", balance());
 		}
 		// Step 7
 		// Now configure your application to perform the SAME TOTAL amount
