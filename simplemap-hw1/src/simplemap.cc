@@ -145,7 +145,7 @@ int main(int argc, char** argv) {
         for (auto i = a.values->begin(); i != a.values->end(); ++i){
             sum = sum + *i;
         }
-        printf("%f", sum);
+        printf("%d ", (int)sum);
     };
     auto do_work = [&](){
         for (int i = 0; i < 10000; i++){
