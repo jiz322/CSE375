@@ -122,6 +122,11 @@ int main(int argc, char** argv) {
     for (int i = 0; i < max_accounts; i++){
         a.insert(i, 10000);
     }
+    float sum = 0;
+    for (auto i = a.values->begin(); i != a.values->end(); ++i){
+        sum = sum + *i;
+    }
+    printf("%d ", (int)sum);
 
     std::random_device dev;
     std::mt19937 rng(dev());
