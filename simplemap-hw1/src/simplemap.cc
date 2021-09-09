@@ -174,5 +174,7 @@ int main(int argc, char** argv) {
     };
     do_work();
     printf ("%f",(a.values->data())[0]);
+    printf ("%f",(a.values->data())[100]);
+    printf ("%f",(a.values->data())[500]);
     printf ("%f",(a.values->data())[1000]);
 }
