@@ -44,12 +44,14 @@
 		//ramdom generator
     	std::random_device dev;
     	std::mt19937 rng(dev());
-		// distribution in range [0, maxaccount]
+		// for select accounts to deposit
     	std::uniform_int_distribution<std::mt19937::result_type> dist_max_accounts(0,max_accounts); 
-		// distribution in range [0, 9]
+		// for  deposit amount
 		std::uniform_int_distribution<std::mt19937::result_type> dist10(0,9);
-		//Try lambda function here
-		auto deposit = [](){
+		// for do work
+		std::uniform_int_distribution<std::mt19937::result_type> dist100(0,99);
+		//First Try of lambda function here
+		auto deposit = [&](){
 			int random1 = dist_max_accounts(rng);
 			int random2 = dist_max_accounts(rng);
 			//random1 and ramdom2 have to be different
@@ -68,23 +70,33 @@
 		// bank accounts in the map. In order to have a consistent result,
 		// the execution of this function should happen atomically:
 		// no other deposit operations should interleave.
-		auto balance = [](){
-			sum = 0;
-			for (auto i = a.values->begin(); i != values->end(); ++i){
+		auto balance = [&](){
+			float sum = 0;
+			for (auto i = a.values->begin(); i != a.values->end(); ++i){
 				sum = sum + *i;
 			}
-			return sum;
+			printf("%f", sum);
 		};
 		// Step 5
 		// Define a function 'do_work', which has a for-loop that
 		// iterates for config_t.iters times. In each iteration,
 		// the function 'deposit' should be called with 95% of the probability;
 		// otherwise (the rest 5%) the function 'balance' should be called.
+		// TODO DOWN HERE
 		// The function 'do_work' should measure 'exec_time_i', which is the
 		// time needed to perform the entire for-loop. This time will be shared with
 		// the main thread once the thread executing the 'do_work' joins its execution
 		// with the main thread.
-
+		auto do_work = [&](){
+			for (int i = 0; i < config_t.iters; i++){
+				if (dist100(rng) < 95){
+					deposit();
+				}
+				else{
+					balance();
+				}
+			}
+		};
 		// Step 6
 		// The evaluation should be performed in the following way:
 		// - the main thread creates #threads threads (as defined in config_t)

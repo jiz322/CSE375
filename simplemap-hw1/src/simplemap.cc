@@ -91,10 +91,10 @@ int main(int argc, char** argv) {
     //Yes!! Lamda works!
 
 
-    auto balance = [](){
-        return "yeyeyeye";
-	};
-    printf("%s", balance());
+    // auto balance = [](){
+    //     return "yeyeyeye";
+	// };
+    // printf("%s", balance());
 
     //Yes!! Lamda return works!
 
@@ -141,14 +141,14 @@ int main(int argc, char** argv) {
         a.update(random2, balance2-amount);
     };
     auto balance = [&](){
-        sum = 0;
-        for (auto i = a.values->begin(); i != values->end(); ++i){
+        float sum = 0;
+        for (auto i = a.values->begin(); i != a.values->end(); ++i){
             sum = sum + *i;
         }
         printf("%f", sum);
     };
     auto do_work = [&](){
-        for (i = 0; i < 10000; i++){
+        for (int i = 0; i < 10000; i++){
             if (dist100(rng) < 95){
                 deposit();
             }
