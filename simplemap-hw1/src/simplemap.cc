@@ -1,6 +1,7 @@
 #include "simplemap.h"
 #include <iostream>
 #include <stdio.h>
+#include <random>
 int main(int argc, char** argv) {
 
     simplemap_t<char*, int> a = simplemap_t<char*, int> ();
@@ -87,4 +88,21 @@ int main(int argc, char** argv) {
     for(int i = 0; i < 10; i++) {
         print_message("Hello!"); 
     }
+    //Yes!! Lamda works!
+
+
+    //Try ramdom generator
+    printf("try random");
+    std::random_device dev;
+    std::mt19937 rng(dev());
+    std::uniform_int_distribution<std::mt19937::result_type> dist10(0,9); // distribution in range [1, 6]
+    std::cout << dist10(rng) << std::endl;
+    std::cout << dist10(rng) << std::endl;
+    std::cout << dist10(rng) << std::endl;
+    std::cout << dist10(rng) << std::endl;
+    std::cout << dist10(rng) << std::endl;
+    std::cout << dist10(rng) << std::endl;
+    std::cout << dist10(rng) << std::endl;
+    std::cout << dist10(rng) << std::endl;
+    std::cout << dist10(rng) << std::endl;
 }
