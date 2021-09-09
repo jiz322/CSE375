@@ -128,7 +128,7 @@ int main(int argc, char** argv) {
     std::uniform_int_distribution<std::mt19937::result_type> dist_max_accounts(0,max_accounts); 
     std::uniform_int_distribution<std::mt19937::result_type> dist10(0,9);
     std::uniform_int_distribution<std::mt19937::result_type> dist100(0,99);
-    auto deposit = [](){
+    auto deposit = [&](){
         int random1 = dist_max_accounts(rng);
         int random2 = dist_max_accounts(rng);
         while (random1 == random2){
@@ -140,14 +140,14 @@ int main(int argc, char** argv) {
         a.update(random1, balance1+amount);
         a.update(random2, balance2-amount);
     };
-    auto balance = [](){
+    auto balance = [&](){
         sum = 0;
         for (auto i = a.values->begin(); i != values->end(); ++i){
             sum = sum + *i;
         }
         printf("%f", sum);
     };
-    auto do_work = [](){
+    auto do_work = [&](){
         for (i = 0; i < 10000; i++){
             if (dist100(rng) < 95){
                 deposit();
