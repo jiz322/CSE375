@@ -100,6 +100,9 @@
 				// 	&&lock4.try_lock_for(std::chrono::milliseconds(200)))) {
    	 			
   				// }
+				lock.try_lock_for(std::chrono::milliseconds(200));
+				lock3.try_lock_for(std::chrono::milliseconds(200));
+				lock4.try_lock_for(std::chrono::milliseconds(200));
 				
 			}
 			else if (random1%2 == 0 && random2%2 == 0){
