@@ -126,6 +126,9 @@
 				// 	&&lock2.try_lock_for(std::chrono::milliseconds(200)))) {
    	 			
   				// }
+				lock3.try_lock_for(std::chrono::milliseconds(200));
+				lock.try_lock_for(std::chrono::milliseconds(200));
+				lock2.try_lock_for(std::chrono::milliseconds(200));
 				
 			}
 			else {
