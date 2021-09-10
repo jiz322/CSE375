@@ -92,67 +92,105 @@
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
 			printf("here\n");
+			std::unique_lock<std::shared_timed_mutex> ulock(mutex_, std::defer_lock);
+			std::unique_lock<std::shared_timed_mutex> ulock2(mutex2_, std::defer_lock);
+			std::unique_lock<std::shared_timed_mutex> ulock3(mutex3_, std::defer_lock);
+			std::unique_lock<std::shared_timed_mutex> ulock4(mutex4_, std::defer_lock);
+			std::shared_lock<std::shared_timed_mutex> slock(mutex_, std::defer_lock);
+			std::shared_lock<std::shared_timed_mutex> slock2(mutex2_, std::defer_lock);
+			std::shared_lock<std::shared_timed_mutex> slock3(mutex3_, std::defer_lock);
+			std::shared_lock<std::shared_timed_mutex> slock4(mutex4_, std::defer_lock);
             if (random1%2 == 1 && random2%2 == 1){
-				std::unique_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
-				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
-				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
-				int flag = 0; //While loop indicator
+				// std::unique_lock<std::shared_timed_mutex> ulock(mutex_, std::defer_lock);
+				// std::shared_lock<std::shared_timed_mutex> slock3(mutex3_, std::defer_lock);
+				// std::shared_lock<std::shared_timed_mutex> slock4(mutex4_, std::defer_lock);
+				int flag = 1; //While loop indicator
 				while (flag) {
-					int f1 = lock.try_lock();
-					int f3 = lock3.try_lock();
-					int f4 = lock4.try_lock();
-					if (f1&f3&f4 == 1){
-						flag = 0;
-					}
-					else{
-						if (f1 ==  1){
-							lock.unlock();
-						}
-						if (f3 == 1){
-							lock3.unlock();
-						}
-						if (f4 == 1){
-							lock4.unlock();
-						}
-					}
+				 	int f1 = ulock.try_lock();
+				 	int f3 = slock3.try_lock();
+				 	int f4 = slock4.try_lock();
+				 	if (f1&f3&f4 == 1){
+				 		flag = 0; //proceed
+				 	}
+				 	else{	//unlock and wait
+				 		if (f1 ==  1){
+				 			ulock.unlock();
+				 		}
+				 		if (f3 == 1){
+				 			slock3.unlock();
+				 		}
+				 		if (f4 == 1){
+				 			slock4.unlock();
+				 		}
+				 	}
   				}
 				
 			}
 			else if (random1%2 == 0 && random2%2 == 0){
-				std::shared_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
-				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
-				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
-				while (!(lock2.try_lock()
-					&&lock3.try_lock()
-					&&lock4.try_lock())) {
-					// lock2.unlock();
-					// lock3.unlock();
-					// lock4.unlock();
+				int flag = 1; //While loop indicator
+				while (flag) {
+				 	int f2 = ulock2.try_lock();
+				 	int f3 = slock3.try_lock();
+				 	int f4 = slock4.try_lock();
+				 	if (f2&f3&f4 == 1){
+				 		flag = 0; //proceed
+				 	}
+				 	else{	//unlock and wait
+				 		if (f2 ==  1){
+				 			ulock2.unlock();
+				 		}
+				 		if (f3 == 1){
+				 			slock3.unlock();
+				 		}
+				 		if (f4 == 1){
+				 			slock4.unlock();
+				 		}
+				 	}
   				}
 			}
 			else if (random1%2 == 1 && random2%2 == 0){
-				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
-				std::shared_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
-				std::shared_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
-				while (!(lock3.try_lock()
-					&&lock.try_lock()
-					&&lock2.try_lock())) {
-					// lock3.unlock();
-					// lock.unlock();
-					// lock2.unlock();
+				int flag = 1; //While loop indicator
+				while (flag) {
+				 	int f3 = ulock3.try_lock();
+				 	int f1 = slock1.try_lock();
+				 	int f2 = slock2.try_lock();
+				 	if (f3&f1&f2 == 1){
+				 		flag = 0; //proceed
+				 	}
+				 	else{	//unlock and wait
+				 		if (f3 ==  1){
+				 			ulock3.unlock();
+				 		}
+				 		if (f1 == 1){
+				 			slock1.unlock();
+				 		}
+				 		if (f2 == 1){
+				 			slock2.unlock();
+				 		}
+				 	}
   				}
 				
 			}
 			else {
-				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
-				std::shared_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
-				std::shared_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
-				while (!(lock4.try_lock()
-					&&lock.try_lock()
-					&&lock2.try_lock())) {
-   	 				// lock4.unlock();
-					// lock.unlock();
-					// lock2.unlock();
+				int flag = 1; //While loop indicator
+				while (flag) {
+				 	int f4 = ulock4.try_lock();
+				 	int f1 = slock1.try_lock();
+				 	int f2 = slock2.try_lock();
+				 	if (f4&f1&f2 == 1){
+				 		flag = 0; //proceed
+				 	}
+				 	else{	//unlock and wait
+				 		if (f4 ==  1){
+				 			ulock4.unlock();
+				 		}
+				 		if (f1 == 1){
+				 			slock1.unlock();
+				 		}
+				 		if (f2 == 1){
+				 			slock2.unlock();
+				 		}
+				 	}
   				}
 			}
 
