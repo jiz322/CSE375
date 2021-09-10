@@ -120,6 +120,7 @@
 		// with the main thread.
 
 		auto do_work = [&](){
+			timer stopwatch;
 			for (int i = 0; i < cfg.iters; i++){
 				if (dist100(rng) < 95){
 					deposit();
@@ -127,7 +128,7 @@
 				else{
 					balance();
 				}
-			}
+			printf("Time costed %f\n"stopwatch.elapsed());
 		};
 		// Step 6
 		// The evaluation should be performed in the following way:
