@@ -37,10 +37,10 @@
 	}
 
 	void run_custom_tests(config_t& cfg) { 
-		std::shared_mutex mutex_;	//random 1 and 2 both odd
-        std::shared_mutex mutex2_;	//both even
-		std::shared_mutex mutex3_;	//1 odd 2 even
-		std::shared_mutex mutex4_;	//2 even 1 odd
+		std::shared_timed_mutex mutex_;	//random 1 and 2 both odd
+        std::shared_timed_mutex mutex2_;	//both even
+		std::shared_timed_mutex mutex3_;	//1 odd 2 even
+		std::shared_timed_mutex mutex4_;	//2 even 1 odd
 		// Step 1
 		// Define a simplemap_t of types <int,float>
 		// this map represents a collection of bank accounts:
