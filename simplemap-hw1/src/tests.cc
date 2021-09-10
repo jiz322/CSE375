@@ -130,7 +130,7 @@
 					balance();
 				}
 			}
-			usleep(2);
+			usleep(200);
 			printf("\nTime costed %f\n", stopwatch.elapsed());
 			
 		};
