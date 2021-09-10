@@ -92,17 +92,19 @@
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
             if (random1%2 == 1 && random2%2 == 1){
-				std::unique_lock lock(mutex_);
 				std::try_lock(mutex3_, mutex4_);
+				std::unique_lock lock(mutex_);
+				
 			}
 			else if (random1%2 == 0 && random2%2 == 0){
-				std::unique_lock lk2(mutex2_);
 				std::try_lock(mutex3_, mutex4_);
+				std::unique_lock lk2(mutex2_);
+				
 			}
 			else if (random1%2 == 1 && random2%2 == 0){
-				
-				std::unique_lock lk3(mutex3_);
 				std::try_lock(mutex_, mutex2_);
+				std::unique_lock lk3(mutex3_);
+				
 				
 			}
 			else {
