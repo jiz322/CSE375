@@ -95,51 +95,43 @@
 				std::unique_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
-				// while (!(lock.try_lock_for(std::chrono::milliseconds(200))
-				// 	&&lock3.try_lock_for(std::chrono::milliseconds(200))
-				// 	&&lock4.try_lock_for(std::chrono::milliseconds(200)))) {
+				while (!(lock.try_lock_for(std::chrono::milliseconds(200))
+					&&lock3.try_lock_for(std::chrono::milliseconds(200))
+					&&lock4.try_lock_for(std::chrono::milliseconds(200)))) {
    	 			
-  				// }
-				lock.try_lock_for(std::chrono::milliseconds(200));
-				lock3.try_lock_for(std::chrono::milliseconds(200));
-				lock4.try_lock_for(std::chrono::milliseconds(200));
+  				}
 				
 			}
 			else if (random1%2 == 0 && random2%2 == 0){
 				std::unique_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
-				// while (!(lock2.try_lock_for(std::chrono::milliseconds(200))
-				// 	&&lock3.try_lock_for(std::chrono::milliseconds(200))
-				// 	&&lock4.try_lock_for(std::chrono::milliseconds(200)))) {
-   	 			lock2.try_lock_for(std::chrono::milliseconds(200));
-				lock3.try_lock_for(std::chrono::milliseconds(200));
-				lock4.try_lock_for(std::chrono::milliseconds(200));
-  				// }
+				while (!(lock2.try_lock_for(std::chrono::milliseconds(200))
+					&&lock3.try_lock_for(std::chrono::milliseconds(200))
+					&&lock4.try_lock_for(std::chrono::milliseconds(200)))) {
+   	 			
+  				}
 			}
 			else if (random1%2 == 1 && random2%2 == 0){
 				std::unique_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
-				// while (!(lock3.try_lock_for(std::chrono::milliseconds(200))
-				// 	&&lock.try_lock_for(std::chrono::milliseconds(200))
-				// 	&&lock2.try_lock_for(std::chrono::milliseconds(200)))) {
+				while (!(lock3.try_lock_for(std::chrono::milliseconds(200))
+					&&lock.try_lock_for(std::chrono::milliseconds(200))
+					&&lock2.try_lock_for(std::chrono::milliseconds(200)))) {
    	 			
-  				// }
-				lock3.try_lock_for(std::chrono::milliseconds(200));
-				lock.try_lock_for(std::chrono::milliseconds(200));
-				lock2.try_lock_for(std::chrono::milliseconds(200));
+  				}
 				
 			}
 			else {
 				std::unique_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
-				// while (!(lock4.try_lock_for(std::chrono::milliseconds(200))
-				// 	&&lock.try_lock_for(std::chrono::milliseconds(200))
-				// 	&&lock2.try_lock_for(std::chrono::milliseconds(200)))) {
+				while (!(lock4.try_lock_for(std::chrono::milliseconds(200))
+					&&lock.try_lock_for(std::chrono::milliseconds(200))
+					&&lock2.try_lock_for(std::chrono::milliseconds(200)))) {
    	 			
-  				// }
+  				}
 			}
 
 			float balance1 = map.lookup(random1).first;
