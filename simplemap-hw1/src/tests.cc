@@ -104,15 +104,17 @@
 				std::lock(lk2, lk3, lk4);
 			}
 			else if (random1%2 == 1 && random2%2 == 0){
+				std::unique_lock lk3(mutex3_);
 				std::unique_lock lk1(mutex_, std::defer_lock);
 				std::unique_lock lk2(mutex2_, std::defer_lock);
-				std::unique_lock lk3(mutex3_);
+				
 				std::lock(lk1, lk2, lk3);
 			}
 			else {
+				std::unique_lock lk4(mutex4_);
 				std::unique_lock lk1(mutex_, std::defer_lock);
 				std::unique_lock lk2(mutex2_, std::defer_lock);
-				std::unique_lock lk4(mutex4_);
+				
 				std::lock(lk1, lk2, lk4);		
 			}
 
