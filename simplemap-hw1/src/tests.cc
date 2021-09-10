@@ -207,10 +207,10 @@
 		// no other deposit operations should interleave.
 		auto balance = [&](){
 			//printf("balance\n");
-			std::shared_lock lock(mutex_, std::defer_lock);
-			std::shared_lock lock2(mutex2_, std::defer_lock);
-			std::shared_lock lock3(mutex3_, std::defer_lock);
-			std::shared_lock lock4(mutex4_, std::defer_lock);
+			std::shared_lock lock(mutex_);
+			std::shared_lock lock2(mutex2_);
+			std::shared_lock lock3(mutex3_);
+			std::shared_lock lock4(mutex4_);
 			float sum = 0;
 			for (auto i = map.values->begin(); i != map.values->end(); ++i){
 				sum = sum + *i;
