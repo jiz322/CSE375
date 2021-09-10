@@ -96,7 +96,7 @@
 				std::unique_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
-				int flag = 1; //While loop indicator
+				int flag = 0; //While loop indicator
 				while (flag) {
 					int f1 = lock.try_lock();
 					int f3 = lock3.try_lock();
