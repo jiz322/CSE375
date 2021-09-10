@@ -164,12 +164,7 @@
 		// order to improve its performance?
 		timer stopwatch2;
 		for (int i = 0; i < cfg.iters*cfg.threads; i++){
-			if (dist100(rng) < 95){
-				deposit();
-			}
-			else{
-				balance();
-			}
+			do_work();
 		}
 		printf("\nSingle thread Time costed %f\n", stopwatch2.elapsed());
 		// Step 8
