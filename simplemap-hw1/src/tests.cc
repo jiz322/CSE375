@@ -15,6 +15,8 @@
 #include <thread>
 #include <mutex>
 #include <shared_mutex> 
+#include <chrono>
+#include <future>
 	    void printer(int k, float v) {
 			std::cout<<"<"<<k<<","<<v<<">"<< std::endl;
 	}
