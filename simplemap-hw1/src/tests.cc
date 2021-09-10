@@ -98,7 +98,9 @@
 				while (!(lock.try_lock_for(std::chrono::milliseconds(200))
 					&&lock3.try_lock_for(std::chrono::milliseconds(200))
 					&&lock4.try_lock_for(std::chrono::milliseconds(200)))) {
-   	 			
+					mutex_.unlock();
+					mutex3_.unlock();
+					mutex4_.unlock();
   				}
 				
 			}
@@ -109,7 +111,9 @@
 				while (!(lock2.try_lock_for(std::chrono::milliseconds(200))
 					&&lock3.try_lock_for(std::chrono::milliseconds(200))
 					&&lock4.try_lock_for(std::chrono::milliseconds(200)))) {
-   	 			
+					mutex2_.unlock();
+					mutex3_.unlock();
+					mutex4_.unlock();
   				}
 			}
 			else if (random1%2 == 1 && random2%2 == 0){
@@ -119,7 +123,9 @@
 				while (!(lock3.try_lock_for(std::chrono::milliseconds(200))
 					&&lock.try_lock_for(std::chrono::milliseconds(200))
 					&&lock2.try_lock_for(std::chrono::milliseconds(200)))) {
-   	 			
+					mutex3_.unlock();
+					mutex_.unlock();
+					mutex2_.unlock();
   				}
 				
 			}
@@ -130,7 +136,9 @@
 				while (!(lock4.try_lock_for(std::chrono::milliseconds(200))
 					&&lock.try_lock_for(std::chrono::milliseconds(200))
 					&&lock2.try_lock_for(std::chrono::milliseconds(200)))) {
-   	 			
+   	 				mutex4_.unlock();
+					mutex_.unlock();
+					mutex2_.unlock();
   				}
 			}
 
