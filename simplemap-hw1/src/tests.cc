@@ -91,7 +91,7 @@
 			//It should be 202 knowledge but I forgot...
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
-			//printf("here\n");
+			printf("here\n");
             if (random1%2 == 1 && random2%2 == 1){
 				std::unique_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
