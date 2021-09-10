@@ -122,7 +122,7 @@
 		auto do_work = [&](){
 			timer stopwatch;
 			for (int i = 0; i < cfg.iters; i++){
-				if (dist100(rng) < 95){
+				if (dist100(rng) < 5){
 					deposit();
 				}
 				else{
