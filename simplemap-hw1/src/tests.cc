@@ -96,12 +96,25 @@
 				std::unique_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
-				while (!(lock.try_lock()
-					&&lock3.try_lock()
-					&&lock4.try_lock())) {
-					lock.unlock();
-					lock3.unlock();
-					lock4.unlock();
+				int flag = 1; //While loop indicator
+				while (flag) {
+					int f1 = lock.try_lock();
+					int f3 = lock3.try_lock();
+					int f4 = lock4.try_lock();
+					if (f1&f2&f4 == 1){
+						flag = 0
+					}
+					else{
+						if (f1 ==  1){
+							lock.unlock();
+						}
+						if (f3 == 1){
+							lock3.unlock();
+						}
+						if (f4 == 1){
+							lock4.unlock();
+						}
+					}
   				}
 				
 			}
