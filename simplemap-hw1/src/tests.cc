@@ -162,7 +162,16 @@
 		// Which conclusion can you draw?
 		// Which optimization can you do to the single-threaded execution in
 		// order to improve its performance?
-
+		timer stopwatch2;
+		for (int i = 0; i < cfg.iters; i++){
+			if (dist100(rng) < 95){
+				deposit();
+			}
+			else{
+				balance();
+			}
+		}
+		printf("\nSingle thread Time costed %f\n", stopwatch2.elapsed());
 		// Step 8
 		// Remove all the items in the map by leveraging the 'remove' function of the map
 		// Destroy all the allocated resources (if any)
