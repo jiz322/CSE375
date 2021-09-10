@@ -91,7 +91,7 @@
 			//It should be 202 knowledge but I forgot...
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
-			printf("here\n");
+			//printf("here\n");
 			std::unique_lock<std::shared_timed_mutex> ulock(mutex_, std::defer_lock);
 			std::unique_lock<std::shared_timed_mutex> ulock2(mutex2_, std::defer_lock);
 			std::unique_lock<std::shared_timed_mutex> ulock3(mutex3_, std::defer_lock);
