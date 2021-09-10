@@ -15,7 +15,6 @@
 #include <thread>
 #include <mutex>
 #include <shared_mutex> 
-#include <future>
 	    void printer(int k, float v) {
 			std::cout<<"<"<<k<<","<<v<<">"<< std::endl;
 	}
@@ -64,6 +63,13 @@
 			while (random1 == random2){
 				random2 = dist_max_accounts(rng);
 			}
+			// amount is integer 0 - 9
+			// I tried float using
+			// float amount = dist10(rng) + 0.1*dist10(rng) + 0.01*dist10(rng);
+			//I did not get expect resullt, I get a lot of expected result -1
+			//I seems float lose accuracy. 
+			//It should be 202 knowledge but I forgot...
+			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
 			std::unique_lock lock(mutex_);
 			float balance1 = map.lookup(random1).first;
@@ -122,10 +128,8 @@
 
 		//Create a vector of threads
 		std::vector<std::thread> threads;
-		//std::vector<std::future> futures;
 		for (int i = 0; i < cfg.threads; i++){
-			std::thread thread (do_work);
-			threads.push_back(thread);
+			threads.push_back(std::thread(do_work));
 		}
 		for (auto &th : threads){
 			th.join();
