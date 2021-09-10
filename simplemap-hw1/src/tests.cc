@@ -152,7 +152,7 @@
 				int flag = 1; //While loop indicator
 				while (flag) {
 				 	int f3 = ulock3.try_lock();
-				 	int f1 = slock1.try_lock();
+				 	int f1 = slock.try_lock();
 				 	int f2 = slock2.try_lock();
 				 	if (f3&f1&f2 == 1){
 				 		flag = 0; //proceed
@@ -162,7 +162,7 @@
 				 			ulock3.unlock();
 				 		}
 				 		if (f1 == 1){
-				 			slock1.unlock();
+				 			slock.unlock();
 				 		}
 				 		if (f2 == 1){
 				 			slock2.unlock();
@@ -175,7 +175,7 @@
 				int flag = 1; //While loop indicator
 				while (flag) {
 				 	int f4 = ulock4.try_lock();
-				 	int f1 = slock1.try_lock();
+				 	int f1 = slock.try_lock();
 				 	int f2 = slock2.try_lock();
 				 	if (f4&f1&f2 == 1){
 				 		flag = 0; //proceed
@@ -185,7 +185,7 @@
 				 			ulock4.unlock();
 				 		}
 				 		if (f1 == 1){
-				 			slock1.unlock();
+				 			slock.unlock();
 				 		}
 				 		if (f2 == 1){
 				 			slock2.unlock();
