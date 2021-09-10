@@ -163,7 +163,7 @@
 		// Which optimization can you do to the single-threaded execution in
 		// order to improve its performance?
 		timer stopwatch2;
-		for (int i = 0; i < cfg.iters; i++){
+		for (int i = 0; i < cfg.iters*cfg.threads; i++){
 			if (dist100(rng) < 95){
 				deposit();
 			}
