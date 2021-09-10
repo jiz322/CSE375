@@ -122,11 +122,10 @@
 
 		//Create a vector of threads
 		std::vector<std::thread> threads;
-		std::vector<std::future<void>> futures;
+		//std::vector<std::future> futures;
 		for (int i = 0; i < cfg.threads; i++){
 			std::thread thread (do_work);
 			threads.push_back(thread);
-			futures.push_back();
 		}
 		for (auto &th : threads){
 			th.join();
