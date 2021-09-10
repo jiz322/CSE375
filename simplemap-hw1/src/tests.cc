@@ -102,12 +102,12 @@
 			else if (random1%2 == 1 && random2%2 == 0){
 				
 				std::unique_lock lk3(mutex3_);
-				std::try_lock(mutex1_, mutex2_);
+				std::try_lock(mutex_, mutex2_);
 				
 			}
 			else {
 				
-				std::try_lock(mutex1_, mutex2_);
+				std::try_lock(mutex_, mutex2_);
 				std::unique_lock lk4(mutex4_);
 	
 			}
