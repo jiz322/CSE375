@@ -101,7 +101,7 @@
 					int f1 = lock.try_lock();
 					int f3 = lock3.try_lock();
 					int f4 = lock4.try_lock();
-					if (f1&f2&f4 == 1){
+					if (f1&f3&f4 == 1){
 						flag = 0
 					}
 					else{
