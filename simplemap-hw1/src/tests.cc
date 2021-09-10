@@ -99,9 +99,9 @@
 				while (!(lock.try_lock_for(std::chrono::milliseconds(200))
 					&&lock3.try_lock_for(std::chrono::milliseconds(200))
 					&&lock4.try_lock_for(std::chrono::milliseconds(200)))) {
-					// lock.unlock();
-					// lock3.unlock();
-					// lock4.unlock();
+					lock.unlock();
+					lock3.unlock();
+					lock4.unlock();
   				}
 				
 			}
@@ -112,9 +112,9 @@
 				while (!(lock2.try_lock_for(std::chrono::milliseconds(200))
 					&&lock3.try_lock_for(std::chrono::milliseconds(200))
 					&&lock4.try_lock_for(std::chrono::milliseconds(200)))) {
-					// lock2.unlock();
-					// lock3.unlock();
-					// lock4.unlock();
+					lock2.unlock();
+					lock3.unlock();
+					lock4.unlock();
   				}
 			}
 			else if (random1%2 == 1 && random2%2 == 0){
@@ -124,9 +124,9 @@
 				while (!(lock3.try_lock_for(std::chrono::milliseconds(200))
 					&&lock.try_lock_for(std::chrono::milliseconds(200))
 					&&lock2.try_lock_for(std::chrono::milliseconds(200)))) {
-					// lock3.unlock();
-					// lock.unlock();
-					// lock2.unlock();
+					lock3.unlock();
+					lock.unlock();
+					lock2.unlock();
   				}
 				
 			}
@@ -137,9 +137,9 @@
 				while (!(lock4.try_lock_for(std::chrono::milliseconds(200))
 					&&lock.try_lock_for(std::chrono::milliseconds(200))
 					&&lock2.try_lock_for(std::chrono::milliseconds(200)))) {
-   	 				// lock4.unlock();
-					// lock.unlock();
-					// lock2.unlock();
+   	 				lock4.unlock();
+					lock.unlock();
+					lock2.unlock();
   				}
 			}
 
@@ -156,10 +156,10 @@
 		// no other deposit operations should interleave.
 		auto balance = [&](){
 			printf("balance\n");
-			std::shared_lock lock(mutex_);
-			std::shared_lock lock2(mutex2_);
-			std::shared_lock lock3(mutex3_);
-			std::shared_lock lock4(mutex4_);
+			std::shared_lock lock(mutex_, std::defer_lock);
+			std::shared_lock lock2(mutex2_, std::defer_lock);
+			std::shared_lock lock3(mutex3_, std::defer_lock);
+			std::shared_lock lock4(mutex4_, std::defer_lock);
 			float sum = 0;
 			for (auto i = map.values->begin(); i != map.values->end(); ++i){
 				sum = sum + *i;
