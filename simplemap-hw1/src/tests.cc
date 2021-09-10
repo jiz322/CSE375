@@ -92,24 +92,16 @@
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
             if (random1%2 == 1 && random2%2 == 1){
-				std::unique_lock lock(mutex_);
-				std::unique_lock lock(mutex3_);
-				std::unique_lock lock(mutex4_);
+				std::scoped_lock lock(mutex_, mutex3_, mutex4_);
 			}
 			else if (random1%2 == 0 && random2%2 == 0){
-				std::unique_lock lock(mutex2_);
-				std::unique_lock lock(mutex3_);
-				std::unique_lock lock(mutex4_);
+				std::scoped_lock lock(mutex_2, mutex3_, mutex4_);
 			}
 			else if (random1%2 == 1 && random2%2 == 0){
-				std::unique_lock lock(mutex_);
-				std::unique_lock lock(mutex2_);
-				std::unique_lock lock(mutex3_);
+				std::scoped_lock lock(mutex_, mutex2_, mutex3_);
 			}
 			else (
-				std::unique_lock lock(mutex_);
-				std::unique_lock lock(mutex2_);
-				std::unique_lock lock(mutex4_);
+				std::scoped_lock lock(mutex_, mutex2_, mutex4_);
 			)
 
 			float balance1 = map.lookup(random1).first;
@@ -124,10 +116,7 @@
 		// the execution of this function should happen atomically:
 		// no other deposit operations should interleave.
 		auto balance = [&](){
-			std::shared_lock lock(mutex_);
-            std::shared_lock lock(mutex2_);
-			std::shared_lock lock(mutex3_);
-			std::shared_lock lock(mutex4_);
+			std::scoped_lock lock(mutex_, mutex2_, mutex3_, mutex4_);
 			float sum = 0;
 			for (auto i = map.values->begin(); i != map.values->end(); ++i){
 				sum = sum + *i;
