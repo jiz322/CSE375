@@ -92,29 +92,29 @@
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
             if (random1%2 == 1 && random2%2 == 1){
-				std::unique_lock lock(mutex_, defer_lock);
-				std::shared_lock lock3(mutex3_, defer_lock);
-				std::shared_lock lock4(mutex4_, defer_lock);
+				std::unique_lock lock(mutex_, std::defer_lock);
+				std::shared_lock lock3(mutex3_, std::defer_lock);
+				std::shared_lock lock4(mutex4_, std::defer_lock);
 
 				
 			}
 			else if (random1%2 == 0 && random2%2 == 0){
-				std::unique_lock lock2(mutex2_, defer_lock);
-				std::shared_lock lock3(mutex3_, defer_lock);
-				std::shared_lock lock4(mutex4_, defer_lock);
+				std::unique_lock lock2(mutex2_, std::defer_lock);
+				std::shared_lock lock3(mutex3_, std::defer_lock);
+				std::shared_lock lock4(mutex4_, std::defer_lock);
 				
 			}
 			else if (random1%2 == 1 && random2%2 == 0){
-				std::unique_lock lock3(mutex3_, defer_lock);
-				std::shared_lock lock(mutex_, defer_lock);
-				std::shared_lock lock2(mutex2_, defer_lock);
+				std::unique_lock lock3(mutex3_, std::defer_lock);
+				std::shared_lock lock(mutex_, std::defer_lock);
+				std::shared_lock lock2(mutex2_, std::defer_lock);
 				
 				
 			}
 			else {
-				std::unique_lock lock4(mutex4_, defer_lock);
-				std::shared_lock lock(mutex_, defer_lock);
-				std::shared_lock lock2(mutex2_, defer_lock);
+				std::unique_lock lock4(mutex4_, std::defer_lock);
+				std::shared_lock lock(mutex_, std::defer_lock);
+				std::shared_lock lock2(mutex2_, std::defer_lock);
 	
 			}
 
