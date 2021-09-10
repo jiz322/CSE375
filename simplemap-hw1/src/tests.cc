@@ -95,14 +95,14 @@
 				std::scoped_lock lock(mutex_, mutex3_, mutex4_);
 			}
 			else if (random1%2 == 0 && random2%2 == 0){
-				std::scoped_lock lock(mutex_2, mutex3_, mutex4_);
+				std::scoped_lock lock(mutex2_, mutex3_, mutex4_);
 			}
 			else if (random1%2 == 1 && random2%2 == 0){
 				std::scoped_lock lock(mutex_, mutex2_, mutex3_);
 			}
-			else (
+			else {
 				std::scoped_lock lock(mutex_, mutex2_, mutex4_);
-			)
+			}
 
 			float balance1 = map.lookup(random1).first;
 			map.update(random1, balance1+amount);
