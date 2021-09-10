@@ -17,19 +17,21 @@
 #include <shared_mutex> 
 #include <chrono>
 #include <future>
-// stopwatch. Returns time in seconds
-class timer {
-public:
-    std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
-    timer() : lastTime(std::chrono::high_resolution_clock::now()) {}
-    inline double elapsed() {
-        std::chrono::time_point<std::chrono::high_resolution_clock> thisTime=std::chrono::high_resolution_clock::now();
-        double deltaTime = std::chrono::duration<double>(thisTime-lastTime).count();
-        lastTime = thisTime;
-        return deltaTime;
-    }
-};
-	    void printer(int k, float v) {
+	//stopwatch. Returns time in seconds
+	//slass time copied from:
+	//https://stackoverflow.com/questions/38977879/how-can-i-measure-the-execution-time-of-one-thread
+	class timer {
+	public:
+		std::chrono::time_point<std::chrono::high_resolution_clock> lastTime;
+		timer() : lastTime(std::chrono::high_resolution_clock::now()) {}
+		inline double elapsed() {
+			std::chrono::time_point<std::chrono::high_resolution_clock> thisTime=std::chrono::high_resolution_clock::now();
+			double deltaTime = std::chrono::duration<double>(thisTime-lastTime).count();
+			lastTime = thisTime;
+			return deltaTime;
+		}
+	};
+	void printer(int k, float v) {
 			std::cout<<"<"<<k<<","<<v<<">"<< std::endl;
 	}
 
