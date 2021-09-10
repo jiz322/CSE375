@@ -96,9 +96,9 @@
 				std::unique_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
-				while (!(lock.try_lock_for(std::chrono::milliseconds(10000))
-					&&lock3.try_lock_for(std::chrono::milliseconds(10000))
-					&&lock4.try_lock_for(std::chrono::milliseconds(10000)))) {
+				while (!(lock.try_lock())
+					&&lock3.try_lock())
+					&&lock4.try_lock()))) {
 					lock.unlock();
 					lock3.unlock();
 					lock4.unlock();
@@ -109,9 +109,9 @@
 				std::unique_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
-				while (!(lock2.try_lock_for(std::chrono::milliseconds(10000))
-					&&lock3.try_lock_for(std::chrono::milliseconds(10000))
-					&&lock4.try_lock_for(std::chrono::milliseconds(10000)))) {
+				while (!(lock2.try_lock())
+					&&lock3.try_lock())
+					&&lock4.try_lock()))) {
 					lock2.unlock();
 					lock3.unlock();
 					lock4.unlock();
@@ -121,9 +121,9 @@
 				std::unique_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
-				while (!(lock3.try_lock_for(std::chrono::milliseconds(10000))
-					&&lock.try_lock_for(std::chrono::milliseconds(10000))
-					&&lock2.try_lock_for(std::chrono::milliseconds(10000)))) {
+				while (!(lock3.try_lock())
+					&&lock.try_lock())
+					&&lock2.try_lock()))) {
 					lock3.unlock();
 					lock.unlock();
 					lock2.unlock();
@@ -134,9 +134,9 @@
 				std::unique_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
-				while (!(lock4.try_lock_for(std::chrono::milliseconds(10000))
-					&&lock.try_lock_for(std::chrono::milliseconds(10000))
-					&&lock2.try_lock_for(std::chrono::milliseconds(10000)))) {
+				while (!(lock4.try_lock())
+					&&lock.try_lock())
+					&&lock2.try_lock()))) {
    	 				lock4.unlock();
 					lock.unlock();
 					lock2.unlock();
