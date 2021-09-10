@@ -99,9 +99,9 @@
 				while (!(lock.try_lock()
 					&&lock3.try_lock()
 					&&lock4.try_lock())) {
-					// lock.unlock();
-					// lock3.unlock();
-					// lock4.unlock();
+					lock.unlock();
+					lock3.unlock();
+					lock4.unlock();
   				}
 				
 			}
