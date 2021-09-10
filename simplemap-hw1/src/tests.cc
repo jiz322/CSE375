@@ -129,7 +129,7 @@
 					balance();
 				}
 			}
-			printf("Time costed %f\n", stopwatch.elapsed());
+			printf("\nTime costed %f\n", stopwatch.elapsed());
 			
 		};
 		// Step 6
@@ -152,7 +152,7 @@
 		}
 		for (auto &th : threads){
 			th.join();
-			printf("\nThe balance after join is %f", balance());
+			printf("\nThe balance after join is %f\n", balance());
 		}
 		// Step 7
 		// Now configure your application to perform the SAME TOTAL amount
