@@ -39,8 +39,7 @@
 	void run_custom_tests(config_t& cfg) { 
 		std::shared_timed_mutex mutex_;	//random 1 and 2 both odd
         std::shared_timed_mutex mutex2_;	//both even
-		std::shared_timed_mutex mutex3_;	//1 odd 2 even
-		std::shared_timed_mutex mutex4_;	//2 even 1 odd
+		std::shared_timed_mutex mutex3_;	//1 odd 1 even
 		// Step 1
 		// Define a simplemap_t of types <int,float>
 		// this map represents a collection of bank accounts:
@@ -95,21 +94,17 @@
 			std::unique_lock<std::shared_timed_mutex> ulock(mutex_, std::defer_lock);
 			std::unique_lock<std::shared_timed_mutex> ulock2(mutex2_, std::defer_lock);
 			std::unique_lock<std::shared_timed_mutex> ulock3(mutex3_, std::defer_lock);
-			std::unique_lock<std::shared_timed_mutex> ulock4(mutex4_, std::defer_lock);
 			std::shared_lock<std::shared_timed_mutex> slock(mutex_, std::defer_lock);
 			std::shared_lock<std::shared_timed_mutex> slock2(mutex2_, std::defer_lock);
 			std::shared_lock<std::shared_timed_mutex> slock3(mutex3_, std::defer_lock);
-			std::shared_lock<std::shared_timed_mutex> slock4(mutex4_, std::defer_lock);
             if (random1%2 == 1 && random2%2 == 1){
 				// std::unique_lock<std::shared_timed_mutex> ulock(mutex_, std::defer_lock);
 				// std::shared_lock<std::shared_timed_mutex> slock3(mutex3_, std::defer_lock);
-				// std::shared_lock<std::shared_timed_mutex> slock4(mutex4_, std::defer_lock);
 				int flag = 1; //While loop indicator
 				while (flag) {
 				 	int f1 = ulock.try_lock();
 				 	int f3 = slock3.try_lock();
-				 	int f4 = slock4.try_lock();
-				 	if (f1&f3&f4 == 1){
+				 	if (f1&f3 == 1){
 				 		flag = 0; //proceed
 				 	}
 				 	else{	//unlock and wait
@@ -118,9 +113,6 @@
 				 		}
 				 		if (f3 == 1){
 				 			slock3.unlock();
-				 		}
-				 		if (f4 == 1){
-				 			slock4.unlock();
 				 		}
 				 	}
   				}
@@ -131,8 +123,7 @@
 				while (flag) {
 				 	int f2 = ulock2.try_lock();
 				 	int f3 = slock3.try_lock();
-				 	int f4 = slock4.try_lock();
-				 	if (f2&f3&f4 == 1){
+				 	if (f2&f3 == 1){
 				 		flag = 0; //proceed
 				 	}
 				 	else{	//unlock and wait
@@ -142,13 +133,10 @@
 				 		if (f3 == 1){
 				 			slock3.unlock();
 				 		}
-				 		if (f4 == 1){
-				 			slock4.unlock();
-				 		}
 				 	}
   				}
 			}
-			else if (random1%2 == 1 && random2%2 == 0){
+			else { //one odd one even
 				int flag = 1; //While loop indicator
 				while (flag) {
 				 	int f3 = ulock3.try_lock();
@@ -171,28 +159,6 @@
   				}
 				
 			}
-			else {
-				int flag = 1; //While loop indicator
-				while (flag) {
-				 	int f4 = ulock4.try_lock();
-				 	int f1 = slock.try_lock();
-				 	int f2 = slock2.try_lock();
-				 	if (f4&f1&f2 == 1){
-				 		flag = 0; //proceed
-				 	}
-				 	else{	//unlock and wait
-				 		if (f4 ==  1){
-				 			ulock4.unlock();
-				 		}
-				 		if (f1 == 1){
-				 			slock.unlock();
-				 		}
-				 		if (f2 == 1){
-				 			slock2.unlock();
-				 		}
-				 	}
-  				}
-			}
 
 			float balance1 = map.lookup(random1).first;
 			map.update(random1, balance1+amount);
@@ -210,7 +176,6 @@
 			std::shared_lock lock(mutex_);
 			std::shared_lock lock2(mutex2_);
 			std::shared_lock lock3(mutex3_);
-			std::shared_lock lock4(mutex4_);
 			float sum = 0;
 			for (auto i = map.values->begin(); i != map.values->end(); ++i){
 				sum = sum + *i;
