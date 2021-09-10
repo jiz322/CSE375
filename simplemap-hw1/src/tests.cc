@@ -17,6 +17,7 @@
 #include <shared_mutex> 
 #include <chrono>
 #include <future>
+#include <unistd.h>
 	//stopwatch. Returns time in seconds
 	//slass time copied from:
 	//https://stackoverflow.com/questions/38977879/how-can-i-measure-the-execution-time-of-one-thread
@@ -129,6 +130,7 @@
 					balance();
 				}
 			}
+			usleep(2);
 			printf("\nTime costed %f\n", stopwatch.elapsed());
 			
 		};
