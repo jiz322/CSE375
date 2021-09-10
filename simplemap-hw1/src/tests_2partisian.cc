@@ -37,16 +37,9 @@
 	}
 
 	void run_custom_tests(config_t& cfg) { 
-		std::shared_timed_mutex mutex1_;	// 10 lock evenly divide total number  of keys
-        std::shared_timed_mutex mutex2_;	
-		std::shared_timed_mutex mutex3_;
-        std::shared_timed_mutex mutex4_;	
-		std::shared_timed_mutex mutex5_;
-        std::shared_timed_mutex mutex6_;	
-		std::shared_timed_mutex mutex7_;
-        std::shared_timed_mutex mutex8_;	
-		std::shared_timed_mutex mutex9_;
-        std::shared_timed_mutex mutex10_;		
+		std::shared_timed_mutex mutex_;	//random 1 and 2 both odd
+        std::shared_timed_mutex mutex2_;	//both even
+		std::shared_timed_mutex mutex3_;	//1 odd 1 even
 		// Step 1
 		// Define a simplemap_t of types <int,float>
 		// this map represents a collection of bank accounts:
@@ -98,60 +91,73 @@
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
 			//printf("here\n");
-			std::unique_lock<std::shared_timed_mutex> ulock1(mutex1_, std::defer_lock);
+			std::unique_lock<std::shared_timed_mutex> ulock(mutex_, std::defer_lock);
 			std::unique_lock<std::shared_timed_mutex> ulock2(mutex2_, std::defer_lock);
 			std::unique_lock<std::shared_timed_mutex> ulock3(mutex3_, std::defer_lock);
-            std::unique_lock<std::shared_timed_mutex> ulock4(mutex4_, std::defer_lock);
-            std::unique_lock<std::shared_timed_mutex> ulock5(mutex5_, std::defer_lock);
-            std::unique_lock<std::shared_timed_mutex> ulock6(mutex6_, std::defer_lock);
-            std::unique_lock<std::shared_timed_mutex> ulock7(mutex7_, std::defer_lock);
-            std::unique_lock<std::shared_timed_mutex> ulock8(mutex8_, std::defer_lock);
-            std::unique_lock<std::shared_timed_mutex> ulock9(mutex9_, std::defer_lock);
-            std::unique_lock<std::shared_timed_mutex> ulock10(mutex10_, std::defer_lock);
-
-            if (random1 < cfg.key_max/10 
-                || random2 < cfg.key_max/10){
+			std::shared_lock<std::shared_timed_mutex> slock(mutex_, std::defer_lock);
+			std::shared_lock<std::shared_timed_mutex> slock2(mutex2_, std::defer_lock);
+			std::shared_lock<std::shared_timed_mutex> slock3(mutex3_, std::defer_lock);
+            if (random1%2 == 1 && random2%2 == 1){
 				// std::unique_lock<std::shared_timed_mutex> ulock(mutex_, std::defer_lock);
 				// std::shared_lock<std::shared_timed_mutex> slock3(mutex3_, std::defer_lock);
-				while (!ulock1.try_lock);
+				int flag = 1; //While loop indicator
+				while (flag) {
+				 	int f1 = ulock.try_lock();
+				 	int f3 = slock3.try_lock();
+				 	if (f1&f3 == 1){
+				 		flag = 0; //proceed
+				 	}
+				 	else{	//unlock and wait
+				 		if (f1 ==  1){
+				 			ulock.unlock();
+				 		}
+				 		if (f3 == 1){
+				 			slock3.unlock();
+				 		}
+				 	}
+  				}
 				
 			}
-			else if (random1 >= cfg.key_max/10 && random1 < cfg.key_max/10*2
-                || random2 >= cfg.key_max/10 && random2 < cfg.key_max/10*2){
-                while (!ulock2.try_lock);
-			}
-            else if (random1 >= cfg.key_max/10*2 && random1 < cfg.key_max/10*3
-                || random2 >= cfg.key_max/10*2 && random2 < cfg.key_max/10*3){
+			else if (random1%2 == 0 && random2%2 == 0){
 				int flag = 1; //While loop indicator
-				while (!ulock3.try_lock);
+				while (flag) {
+				 	int f2 = ulock2.try_lock();
+				 	int f3 = slock3.try_lock();
+				 	if (f2&f3 == 1){
+				 		flag = 0; //proceed
+				 	}
+				 	else{	//unlock and wait
+				 		if (f2 ==  1){
+				 			ulock2.unlock();
+				 		}
+				 		if (f3 == 1){
+				 			slock3.unlock();
+				 		}
+				 	}
+  				}
 			}
-            else if (random1 >= cfg.key_max/10*3 && random1 < cfg.key_max/10*4
-                || random2 >= cfg.key_max/10*3 && random2 < cfg.key_max/10*4){
-				while (!ulock4.try_lock);
-			}
-            else if (random1 >= cfg.key_max/10*4 && random1 < cfg.key_max/10*5
-                || random2 >= cfg.key_max/10*4 && random2 < cfg.key_max/10*5){
+			else { //one odd one even
 				int flag = 1; //While loop indicator
-				while (!ulock5.try_lock);
-			}
-            else if (random1 >= cfg.key_max/10*5 && random1 < cfg.key_max/10*6
-                || random2 >= cfg.key_max/10*5 && random2 < cfg.key_max/10*6){
-				while (!ulock6.try_lock);
-			}
-            else if (random1 >= cfg.key_max/10*6 && random1 < cfg.key_max/10*7
-                || random2 >= cfg.key_max/10*6 && random2 < cfg.key_max/10*7){
-				while (!ulock7.try_lock);
-			}
-            else if (random1 >= cfg.key_max/10*7 && random1 < cfg.key_max/10*8
-                || random2 >= cfg.key_max/10*7 && random2 < cfg.key_max/10*8){
-				while (!ulock8.try_lock);
-			}
-            else if (random1 >= cfg.key_max/10*8 && random1 < cfg.key_max/10*9
-                || random2 >= cfg.key_max/10*8 && random2 < cfg.key_max/10*9){
-				while (!ulock9.try_lock);
-			}
-			else { 
-				while (!ulock10.try_lock);
+				while (flag) {
+				 	int f3 = ulock3.try_lock();
+				 	int f1 = slock.try_lock();
+				 	int f2 = slock2.try_lock();
+				 	if (f3&f1&f2 == 1){
+				 		flag = 0; //proceed
+				 	}
+				 	else{	//unlock and wait
+				 		if (f3 ==  1){
+				 			ulock3.unlock();
+				 		}
+				 		if (f1 == 1){
+				 			slock.unlock();
+				 		}
+				 		if (f2 == 1){
+				 			slock2.unlock();
+				 		}
+				 	}
+  				}
+				
 			}
 
 			float balance1 = map.lookup(random1).first;
@@ -170,13 +176,6 @@
 			std::shared_lock lock(mutex_);
 			std::shared_lock lock2(mutex2_);
 			std::shared_lock lock3(mutex3_);
-            std::shared_lock lock4(mutex_);
-			std::shared_lock lock5(mutex2_);
-			std::shared_lock lock6(mutex3_);
-            std::shared_lock lock7(mutex_);
-			std::shared_lock lock8(mutex2_);
-			std::shared_lock lock9(mutex3_);
-            std::shared_lock lock10(mutex3_);
 			float sum = 0;
 			for (auto i = map.values->begin(); i != map.values->end(); ++i){
 				sum = sum + *i;
