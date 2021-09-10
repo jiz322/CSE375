@@ -106,7 +106,7 @@
 				std::unique_lock lock2(mutex2_, std::defer_lock);
 				std::shared_lock lock3(mutex3_, std::defer_lock);
 				std::shared_lock lock4(mutex4_, std::defer_lock);
-				while (!(lock.try_lock_for(std::chrono::milliseconds(200))
+				while (!(lock2.try_lock_for(std::chrono::milliseconds(200))
 					&&lock3.try_lock_for(std::chrono::milliseconds(200))
 					&&lock4.try_lock_for(std::chrono::milliseconds(200)))) {
    	 			
