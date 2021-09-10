@@ -128,7 +128,7 @@
 				else{
 					balance();
 				}
-			printf("Time costed %f\n"stopwatch.elapsed());
+			printf("Time costed %f\n", stopwatch.elapsed());
 		};
 		// Step 6
 		// The evaluation should be performed in the following way:
