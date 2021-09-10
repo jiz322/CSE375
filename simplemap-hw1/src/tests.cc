@@ -93,7 +93,7 @@
 			float amount = dist100(rng);
 			//printf("here\n");
             if (random1%2 == 1 && random2%2 == 1){
-				std::unique_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
+				std::shared_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
 				while (!(lock.try_lock()
@@ -106,7 +106,7 @@
 				
 			}
 			else if (random1%2 == 0 && random2%2 == 0){
-				std::unique_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
+				std::shared_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
 				while (!(lock2.try_lock()
@@ -118,7 +118,7 @@
   				}
 			}
 			else if (random1%2 == 1 && random2%2 == 0){
-				std::unique_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
+				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
 				while (!(lock3.try_lock()
@@ -131,7 +131,7 @@
 				
 			}
 			else {
-				std::unique_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
+				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock2(mutex2_, std::defer_lock);
 				while (!(lock4.try_lock()
