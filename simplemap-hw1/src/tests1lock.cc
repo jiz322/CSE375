@@ -37,10 +37,7 @@
 	}
 
 	void run_custom_tests(config_t& cfg) { 
-		std::shared_mutex mutex_;	//random 1 and 2 both odd
-        std::shared_mutex mutex2_;	//both even
-		std::shared_mutex mutex3_;	//1 odd 2 even
-		std::shared_mutex mutex4_;	//2 even 1 odd
+		std::shared_mutex mutex_;
 		// Step 1
 		// Define a simplemap_t of types <int,float>
 		// this map represents a collection of bank accounts:
@@ -91,27 +88,7 @@
 			//It should be 202 knowledge but I forgot...
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
-            if (random1%2 == 1 && random2%2 == 1){
-				std::unique_lock lock(mutex_);
-				std::unique_lock lock(mutex3_);
-				std::unique_lock lock(mutex4_);
-			}
-			else if (random1%2 == 0 && random2%2 == 0){
-				std::unique_lock lock(mutex2_);
-				std::unique_lock lock(mutex3_);
-				std::unique_lock lock(mutex4_);
-			}
-			else if (random1%2 == 1 && random2%2 == 0){
-				std::unique_lock lock(mutex_);
-				std::unique_lock lock(mutex2_);
-				std::unique_lock lock(mutex3_);
-			}
-			else (
-				std::unique_lock lock(mutex_);
-				std::unique_lock lock(mutex2_);
-				std::unique_lock lock(mutex4_);
-			)
-
+			std::unique_lock lock(mutex_);
 			float balance1 = map.lookup(random1).first;
 			map.update(random1, balance1+amount);
 			float balance2 = map.lookup(random2).first;
@@ -125,9 +102,6 @@
 		// no other deposit operations should interleave.
 		auto balance = [&](){
 			std::shared_lock lock(mutex_);
-            std::shared_lock lock(mutex2_);
-			std::shared_lock lock(mutex3_);
-			std::shared_lock lock(mutex4_);
 			float sum = 0;
 			for (auto i = map.values->begin(); i != map.values->end(); ++i){
 				sum = sum + *i;
