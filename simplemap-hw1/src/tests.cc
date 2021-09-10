@@ -155,6 +155,7 @@
 		// the execution of this function should happen atomically:
 		// no other deposit operations should interleave.
 		auto balance = [&](){
+			print("balance\n");
 			std::shared_lock lock(mutex_);
 			std::shared_lock lock2(mutex2_);
 			std::shared_lock lock3(mutex3_);
