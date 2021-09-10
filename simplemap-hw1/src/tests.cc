@@ -130,7 +130,7 @@
 					balance();
 				}
 			}
-			usleep(2000000);
+			std::this_thread::sleep_for(std::chrono::milliseconds(1000000));
 			printf("\nTime costed %f\n", stopwatch.elapsed());
 			
 		};
