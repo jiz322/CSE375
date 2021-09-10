@@ -93,7 +93,7 @@
 			float amount = dist100(rng);
 			//printf("here\n");
             if (random1%2 == 1 && random2%2 == 1){
-				std::shared_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
+				std::unique_lock<std::shared_timed_mutex> lock(mutex_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock3(mutex3_, std::defer_lock);
 				std::shared_lock<std::shared_timed_mutex> lock4(mutex4_, std::defer_lock);
 				while (!(lock.try_lock()
