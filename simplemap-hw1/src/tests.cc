@@ -92,13 +92,13 @@
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
             if (random1%2 == 1 && random2%2 == 1){
-				std::unique_lock lk1(mutex_, std::defer_lock);
+				std::unique_lock lk1(mutex_);
 				std::unique_lock lk3(mutex3_, std::defer_lock);
 				std::unique_lock lk4(mutex4_, std::defer_lock);
 				std::lock(lk1, lk3, lk4);
 			}
 			else if (random1%2 == 0 && random2%2 == 0){
-				std::unique_lock lk2(mutex2_, std::defer_lock);
+				std::unique_lock lk2(mutex2_);
 				std::unique_lock lk3(mutex3_, std::defer_lock);
 				std::unique_lock lk4(mutex4_, std::defer_lock);
 				std::lock(lk2, lk3, lk4);
@@ -106,13 +106,13 @@
 			else if (random1%2 == 1 && random2%2 == 0){
 				std::unique_lock lk1(mutex_, std::defer_lock);
 				std::unique_lock lk2(mutex2_, std::defer_lock);
-				std::unique_lock lk3(mutex3_, std::defer_lock);
+				std::unique_lock lk3(mutex3_);
 				std::lock(lk1, lk2, lk3);
 			}
 			else {
 				std::unique_lock lk1(mutex_, std::defer_lock);
 				std::unique_lock lk2(mutex2_, std::defer_lock);
-				std::unique_lock lk4(mutex4_, std::defer_lock);
+				std::unique_lock lk4(mutex4_);
 				std::lock(lk1, lk2, lk4);		
 			}
 
