@@ -174,7 +174,11 @@
 		// Destroy all the allocated resources (if any)
 		// Execution terminates.
 		// If you reach this stage happy, then you did a good job!
-
+		for (auto &key : *map.keys){
+			map.remove(key);
+		}
+		free(map.keys);
+		free(map.values);
 		// Final step: Produce plot
     // I expect each submission to include at least one plot in which
     // the x-axis is the concurrent threads used {1;2;4;8}
