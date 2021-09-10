@@ -164,7 +164,7 @@ int main(int argc, char** argv) {
     };
     auto do_work = [&](){
         for (int i = 0; i < 10000; i++){
-            if (dist100(rng) < 95){
+            if (dist100(rng) < 5){
                 deposit();
             }
             else{
