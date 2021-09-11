@@ -252,7 +252,7 @@
 		// Destroy all the allocated resources (if any)
 		// Execution terminates.
 		// If you reach this stage happy, then you did a good job!
-        map.apply(printer);
+        //map.apply(printer);
 		for (auto &key : *map.keys){
 			map.remove(key);
 		}
