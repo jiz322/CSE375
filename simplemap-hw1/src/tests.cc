@@ -46,7 +46,14 @@
 		std::shared_timed_mutex mutex7_;
         std::shared_timed_mutex mutex8_;	
 		std::shared_timed_mutex mutex9_;
-        std::shared_timed_mutex mutex10_;	
+        std::shared_timed_mutex mutex10_;		
+		// Step 1
+		// Define a simplemap_t of types <int,float>
+		// this map represents a collection of bank accounts:
+		// each account has a unique ID of type int;
+		// each account has an amount of fund of type float.
+   		simplemap_t<int, float> map = simplemap_t<int, float> ();	
+
         // Step 4
 		// Define a function "balance" that sums the amount of all the
 		// bank accounts in the map. In order to have a consistent result,
@@ -70,13 +77,7 @@
 			}
 			//printf("%f", sum);
 			return sum;
-		};	
-		// Step 1
-		// Define a simplemap_t of types <int,float>
-		// this map represents a collection of bank accounts:
-		// each account has a unique ID of type int;
-		// each account has an amount of fund of type float.
-   		simplemap_t<int, float> map = simplemap_t<int, float> ();	
+		};
 		// Step 2
 		// Populate the entire map with the 'insert' function
 		// Initialize the map in a way the sum of the amounts of
