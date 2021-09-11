@@ -149,7 +149,7 @@
 				while (!ulock9.try_lock());
 			}
 			if ((random1 >= cfg.key_max/10*9)
-                || (random1 >= cfg.key_max/10*9)){ 
+                || (random2 >= cfg.key_max/10*9)){ 
 				while (!ulock10.try_lock());
 			}
 
