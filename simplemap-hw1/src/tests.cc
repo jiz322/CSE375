@@ -111,43 +111,41 @@
 
             if (random1 < cfg.key_max/10 
                 || random2 < cfg.key_max/10){
-				// std::unique_lock<std::shared_timed_mutex> ulock(mutex_, std::defer_lock);
-				// std::shared_lock<std::shared_timed_mutex> slock3(mutex3_, std::defer_lock);
 				while (!ulock1.try_lock());
 				
 			}
-			else if (random1 >= cfg.key_max/10 && random1 < cfg.key_max/10*2
-                || random2 >= cfg.key_max/10 && random2 < cfg.key_max/10*2){
+			else if ((random1 >= cfg.key_max/10 && random1 < cfg.key_max/10*2)
+                || (random2 >= cfg.key_max/10 && random2 < cfg.key_max/10*2)){
                 while (!ulock2.try_lock());
 			}
-            else if (random1 >= cfg.key_max/10*2 && random1 < cfg.key_max/10*3
-                || random2 >= cfg.key_max/10*2 && random2 < cfg.key_max/10*3){
+            else if ((random1 >= cfg.key_max/10*2 && random1 < cfg.key_max/10*3)
+                || (random2 >= cfg.key_max/10*2 && random2 < cfg.key_max/10*3)){
 				int flag = 1; //While loop indicator
 				while (!ulock3.try_lock());
 			}
-            else if (random1 >= cfg.key_max/10*3 && random1 < cfg.key_max/10*4
-                || random2 >= cfg.key_max/10*3 && random2 < cfg.key_max/10*4){
+            else if ((random1 >= cfg.key_max/10*3 && random1 < cfg.key_max/10*4)
+                || (random2 >= cfg.key_max/10*3 && random2 < cfg.key_max/10*4)){
 				while (!ulock4.try_lock());
 			}
-            else if (random1 >= cfg.key_max/10*4 && random1 < cfg.key_max/10*5
-                || random2 >= cfg.key_max/10*4 && random2 < cfg.key_max/10*5){
+            else if ((random1 >= cfg.key_max/10*4 && random1 < cfg.key_max/10*5)
+                || (random2 >= cfg.key_max/10*4 && random2 < cfg.key_max/10*5)){
 				int flag = 1; //While loop indicator
 				while (!ulock5.try_lock());
 			}
-            else if (random1 >= cfg.key_max/10*5 && random1 < cfg.key_max/10*6
-                || random2 >= cfg.key_max/10*5 && random2 < cfg.key_max/10*6){
+            else if ((random1 >= cfg.key_max/10*5 && random1 < cfg.key_max/10*6)
+                || (random2 >= cfg.key_max/10*5 && random2 < cfg.key_max/10*6)){
 				while (!ulock6.try_lock());
 			}
-            else if (random1 >= cfg.key_max/10*6 && random1 < cfg.key_max/10*7
-                || random2 >= cfg.key_max/10*6 && random2 < cfg.key_max/10*7){
+            else if ((random1 >= cfg.key_max/10*6 && random1 < cfg.key_max/10*7)
+                || (random2 >= cfg.key_max/10*6 && random2 < cfg.key_max/10*7)){
 				while (!ulock7.try_lock());
 			}
-            else if (random1 >= cfg.key_max/10*7 && random1 < cfg.key_max/10*8
-                || random2 >= cfg.key_max/10*7 && random2 < cfg.key_max/10*8){
+            else if ((random1 >= cfg.key_max/10*7 && random1 < cfg.key_max/10*8)
+                || (random2 >= cfg.key_max/10*7 && random2 < cfg.key_max/10*8)){
 				while (!ulock8.try_lock());
 			}
-            else if (random1 >= cfg.key_max/10*8 && random1 < cfg.key_max/10*9
-                || random2 >= cfg.key_max/10*8 && random2 < cfg.key_max/10*9){
+            else if ((random1 >= cfg.key_max/10*8 && random1 < cfg.key_max/10*9)
+                || (random2 >= cfg.key_max/10*8 && random2 < cfg.key_max/10*9)){
 				while (!ulock9.try_lock());
 			}
 			else { 
