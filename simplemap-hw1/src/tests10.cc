@@ -37,22 +37,58 @@
 	}
 
 	void run_custom_tests(config_t& cfg) { 
-		std::shared_mutex mutex_;
+		std::shared_timed_mutex mutex1_;	// 10 lock evenly divide total number  of keys
+        std::shared_timed_mutex mutex2_;	
+		std::shared_timed_mutex mutex3_;
+        std::shared_timed_mutex mutex4_;	
+		std::shared_timed_mutex mutex5_;
+        std::shared_timed_mutex mutex6_;	
+		std::shared_timed_mutex mutex7_;
+        std::shared_timed_mutex mutex8_;	
+		std::shared_timed_mutex mutex9_;
+        std::shared_timed_mutex mutex10_;		
 		// Step 1
 		// Define a simplemap_t of types <int,float>
 		// this map represents a collection of bank accounts:
 		// each account has a unique ID of type int;
 		// each account has an amount of fund of type float.
    		simplemap_t<int, float> map = simplemap_t<int, float> ();	
+
+        // Step 4
+        // NB: Step 4  is over here since I want to use this function to initialize
+		// Define a function "balance" that sums the amount of all the
+		// bank accounts in the map. In order to have a consistent result,
+		// the execution of this function should happen atomically:
+		// no other deposit operations should interleave.
+		auto balance = [&](){
+			//printf("balance\n");
+			std::shared_lock lock1(mutex1_);
+			std::shared_lock lock2(mutex2_);
+			std::shared_lock lock3(mutex3_);
+            std::shared_lock lock4(mutex4_);
+			std::shared_lock lock5(mutex5_);
+			std::shared_lock lock6(mutex6_);
+            std::shared_lock lock7(mutex7_);
+			std::shared_lock lock8(mutex8_);
+			std::shared_lock lock9(mutex9_);
+            std::shared_lock lock10(mutex10_);
+			double sum = 0;
+			for (auto i = map.values->begin(); i != map.values->end(); ++i){
+				sum = sum + *i;
+			}
+			//printf("%f", sum);
+			return sum;
+		};
 		// Step 2
 		// Populate the entire map with the 'insert' function
 		// Initialize the map in a way the sum of the amounts of
 		// all the accounts in the map is 100000
 		// Jordan: "Let's have 10 accounts each 10000.00 bucks"
 		int max_accounts = cfg.key_max;
-		for (int i = 0; i < max_accounts; i++){
-			map.insert(i, 100000.0/max_accounts);
+		for (int i = 0; i < max_accounts - 1; i++){
+			map.insert(i, 90000/max_accounts);
 		}
+        map.insert(max_accounts-1, 100000.0 - balance());
 		// Step 3
 		// Define a function "deposit" that selects two random bank accounts
 		// and an amount. This amount is subtracted from the amount
@@ -88,27 +124,69 @@
 			//It should be 202 knowledge but I forgot...
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
-			std::unique_lock lock(mutex_);
+			//printf("here\n");
+			std::unique_lock<std::shared_timed_mutex> ulock1(mutex1_, std::defer_lock);
+			std::unique_lock<std::shared_timed_mutex> ulock2(mutex2_, std::defer_lock);
+			std::unique_lock<std::shared_timed_mutex> ulock3(mutex3_, std::defer_lock);
+            std::unique_lock<std::shared_timed_mutex> ulock4(mutex4_, std::defer_lock);
+            std::unique_lock<std::shared_timed_mutex> ulock5(mutex5_, std::defer_lock);
+            std::unique_lock<std::shared_timed_mutex> ulock6(mutex6_, std::defer_lock);
+            std::unique_lock<std::shared_timed_mutex> ulock7(mutex7_, std::defer_lock);
+            std::unique_lock<std::shared_timed_mutex> ulock8(mutex8_, std::defer_lock);
+            std::unique_lock<std::shared_timed_mutex> ulock9(mutex9_, std::defer_lock);
+            std::unique_lock<std::shared_timed_mutex> ulock10(mutex10_, std::defer_lock);
+
+            if (random1 < cfg.key_max/10 
+                || random2 < cfg.key_max/10){
+				while (!ulock1.try_lock());
+				
+			}
+			if ((random1 >= cfg.key_max/10 && random1 < cfg.key_max/10*2)
+                || (random2 >= cfg.key_max/10 && random2 < cfg.key_max/10*2)){
+                while (!ulock2.try_lock());
+			}
+            if ((random1 >= cfg.key_max/10*2 && random1 < cfg.key_max/10*3)
+                || (random2 >= cfg.key_max/10*2 && random2 < cfg.key_max/10*3)){
+				int flag = 1; //While loop indicator
+				while (!ulock3.try_lock());
+			}
+            if ((random1 >= cfg.key_max/10*3 && random1 < cfg.key_max/10*4)
+                || (random2 >= cfg.key_max/10*3 && random2 < cfg.key_max/10*4)){
+				while (!ulock4.try_lock());
+			}
+            if ((random1 >= cfg.key_max/10*4 && random1 < cfg.key_max/10*5)
+                || (random2 >= cfg.key_max/10*4 && random2 < cfg.key_max/10*5)){
+				int flag = 1; //While loop indicator
+				while (!ulock5.try_lock());
+			}
+            if ((random1 >= cfg.key_max/10*5 && random1 < cfg.key_max/10*6)
+                || (random2 >= cfg.key_max/10*5 && random2 < cfg.key_max/10*6)){
+				while (!ulock6.try_lock());
+			}
+            if ((random1 >= cfg.key_max/10*6 && random1 < cfg.key_max/10*7)
+                || (random2 >= cfg.key_max/10*6 && random2 < cfg.key_max/10*7)){
+				while (!ulock7.try_lock());
+			}
+            if ((random1 >= cfg.key_max/10*7 && random1 < cfg.key_max/10*8)
+                || (random2 >= cfg.key_max/10*7 && random2 < cfg.key_max/10*8)){
+				while (!ulock8.try_lock());
+			}
+            if ((random1 >= cfg.key_max/10*8 && random1 < cfg.key_max/10*9)
+                || (random2 >= cfg.key_max/10*8 && random2 < cfg.key_max/10*9)){
+				while (!ulock9.try_lock());
+			}
+			if ((random1 >= cfg.key_max/10*9)
+                || (random2 >= cfg.key_max/10*9)){ 
+				while (!ulock10.try_lock());
+			}
+
 			float balance1 = map.lookup(random1).first;
 			map.update(random1, balance1+amount);
 			float balance2 = map.lookup(random2).first;
 			map.update(random2, balance2-amount);
 			
 		};
-		// Step 4
-		// Define a function "balance" that sums the amount of all the
-		// bank accounts in the map. In order to have a consistent result,
-		// the execution of this function should happen atomically:
-		// no other deposit operations should interleave.
-		auto balance = [&](){
-			std::shared_lock lock(mutex_);
-			float sum = 0;
-			for (auto i = map.values->begin(); i != map.values->end(); ++i){
-				sum = sum + *i;
-			}
-			//printf("%f", sum);
-			return sum;
-		};
+
 		// Step 5
 		// Define a function 'do_work', which has a for-loop that
 		// iterates for config_t.iters times. In each iteration,
@@ -174,6 +252,7 @@
 		// Destroy all the allocated resources (if any)
 		// Execution terminates.
 		// If you reach this stage happy, then you did a good job!
+        //map.apply(printer);
 		for (auto &key : *map.keys){
 			map.remove(key);
 		}
@@ -189,7 +268,7 @@
     // You might need the following function to print the entire map.
     // Attention if you use it while multiple threads are operating
     
-	//map.apply(printer);
+	
 
 	}
 
