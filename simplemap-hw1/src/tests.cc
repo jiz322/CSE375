@@ -37,9 +37,7 @@
 	}
 
 	void run_custom_tests(config_t& cfg) { 
-		std::shared_timed_mutex mutex_;	//random 1 and 2 both odd
-        std::shared_timed_mutex mutex2_;	//both even
-		std::shared_timed_mutex mutex3_;	//1 odd 1 even
+		std::shared_mutex mutex_;
 		// Step 1
 		// Define a simplemap_t of types <int,float>
 		// this map represents a collection of bank accounts:
@@ -90,76 +88,7 @@
 			//It should be 202 knowledge but I forgot...
 			// How to fix it? (I guess I do not have time to fix it before Friday)
 			float amount = dist100(rng);
-			//printf("here\n");
-			std::unique_lock<std::shared_timed_mutex> ulock(mutex_, std::defer_lock);
-			std::unique_lock<std::shared_timed_mutex> ulock2(mutex2_, std::defer_lock);
-			std::unique_lock<std::shared_timed_mutex> ulock3(mutex3_, std::defer_lock);
-			std::shared_lock<std::shared_timed_mutex> slock(mutex_, std::defer_lock);
-			std::shared_lock<std::shared_timed_mutex> slock2(mutex2_, std::defer_lock);
-			std::shared_lock<std::shared_timed_mutex> slock3(mutex3_, std::defer_lock);
-            if (random1%2 == 1 && random2%2 == 1){
-				// std::unique_lock<std::shared_timed_mutex> ulock(mutex_, std::defer_lock);
-				// std::shared_lock<std::shared_timed_mutex> slock3(mutex3_, std::defer_lock);
-				int flag = 1; //While loop indicator
-				while (flag) {
-				 	int f1 = ulock.try_lock();
-				 	int f3 = slock3.try_lock();
-				 	if (f1&f3 == 1){
-				 		flag = 0; //proceed
-				 	}
-				 	else{	//unlock and wait
-				 		if (f1 ==  1){
-				 			ulock.unlock();
-				 		}
-				 		if (f3 == 1){
-				 			slock3.unlock();
-				 		}
-				 	}
-  				}
-				
-			}
-			else if (random1%2 == 0 && random2%2 == 0){
-				int flag = 1; //While loop indicator
-				while (flag) {
-				 	int f2 = ulock2.try_lock();
-				 	int f3 = slock3.try_lock();
-				 	if (f2&f3 == 1){
-				 		flag = 0; //proceed
-				 	}
-				 	else{	//unlock and wait
-				 		if (f2 ==  1){
-				 			ulock2.unlock();
-				 		}
-				 		if (f3 == 1){
-				 			slock3.unlock();
-				 		}
-				 	}
-  				}
-			}
-			else { //one odd one even
-				int flag = 1; //While loop indicator
-				while (flag) {
-				 	int f3 = ulock3.try_lock();
-				 	int f1 = slock.try_lock();
-				 	int f2 = slock2.try_lock();
-				 	if (f3&f1&f2 == 1){
-				 		flag = 0; //proceed
-				 	}
-				 	else{	//unlock and wait
-				 		if (f3 ==  1){
-				 			ulock3.unlock();
-				 		}
-				 		if (f1 == 1){
-				 			slock.unlock();
-				 		}
-				 		if (f2 == 1){
-				 			slock2.unlock();
-				 		}
-				 	}
-  				}
-				
-			}
-
+			std::unique_lock lock(mutex_);
 			float balance1 = map.lookup(random1).first;
 			map.update(random1, balance1+amount);
 			float balance2 = map.lookup(random2).first;
@@ -172,10 +101,7 @@
 		// the execution of this function should happen atomically:
 		// no other deposit operations should interleave.
 		auto balance = [&](){
-			//printf("balance\n");
 			std::shared_lock lock(mutex_);
-			std::shared_lock lock2(mutex2_);
-			std::shared_lock lock3(mutex3_);
 			float sum = 0;
 			for (auto i = map.values->begin(); i != map.values->end(); ++i){
 				sum = sum + *i;
