@@ -55,6 +55,7 @@
    		simplemap_t<int, float> map = simplemap_t<int, float> ();	
 
         // Step 4
+        // NB: Step 4  is over here since I want to use this function to initialize
 		// Define a function "balance" that sums the amount of all the
 		// bank accounts in the map. In order to have a consistent result,
 		// the execution of this function should happen atomically:
