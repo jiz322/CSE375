@@ -46,7 +46,31 @@
 		std::shared_timed_mutex mutex7_;
         std::shared_timed_mutex mutex8_;	
 		std::shared_timed_mutex mutex9_;
-        std::shared_timed_mutex mutex10_;		
+        std::shared_timed_mutex mutex10_;	
+        // Step 4
+		// Define a function "balance" that sums the amount of all the
+		// bank accounts in the map. In order to have a consistent result,
+		// the execution of this function should happen atomically:
+		// no other deposit operations should interleave.
+		auto balance = [&](){
+			//printf("balance\n");
+			std::shared_lock lock1(mutex1_);
+			std::shared_lock lock2(mutex2_);
+			std::shared_lock lock3(mutex3_);
+            std::shared_lock lock4(mutex4_);
+			std::shared_lock lock5(mutex5_);
+			std::shared_lock lock6(mutex6_);
+            std::shared_lock lock7(mutex7_);
+			std::shared_lock lock8(mutex8_);
+			std::shared_lock lock9(mutex9_);
+            std::shared_lock lock10(mutex10_);
+			float sum = 0;
+			for (auto i = map.values->begin(); i != map.values->end(); ++i){
+				sum = sum + *i;
+			}
+			//printf("%f", sum);
+			return sum;
+		};	
 		// Step 1
 		// Define a simplemap_t of types <int,float>
 		// this map represents a collection of bank accounts:
@@ -59,9 +83,10 @@
 		// all the accounts in the map is 100000
 		// Jordan: "Let's have 10 accounts each 10000.00 bucks"
 		int max_accounts = cfg.key_max;
-		for (int i = 0; i < max_accounts; i++){
+		for (int i = 0; i < max_accounts - 1; i++){
 			map.insert(i, 100000.0/max_accounts);
 		}
+        map.insert(i, 100000.0 - map.balance());
 		// Step 3
 		// Define a function "deposit" that selects two random bank accounts
 		// and an amount. This amount is subtracted from the amount
@@ -159,30 +184,7 @@
 			map.update(random2, balance2-amount);
 			
 		};
-		// Step 4
-		// Define a function "balance" that sums the amount of all the
-		// bank accounts in the map. In order to have a consistent result,
-		// the execution of this function should happen atomically:
-		// no other deposit operations should interleave.
-		auto balance = [&](){
-			//printf("balance\n");
-			std::shared_lock lock1(mutex1_);
-			std::shared_lock lock2(mutex2_);
-			std::shared_lock lock3(mutex3_);
-            std::shared_lock lock4(mutex4_);
-			std::shared_lock lock5(mutex5_);
-			std::shared_lock lock6(mutex6_);
-            std::shared_lock lock7(mutex7_);
-			std::shared_lock lock8(mutex8_);
-			std::shared_lock lock9(mutex9_);
-            std::shared_lock lock10(mutex10_);
-			float sum = 0;
-			for (auto i = map.values->begin(); i != map.values->end(); ++i){
-				sum = sum + *i;
-			}
-			//printf("%f", sum);
-			return sum;
-		};
+
 		// Step 5
 		// Define a function 'do_work', which has a for-loop that
 		// iterates for config_t.iters times. In each iteration,
