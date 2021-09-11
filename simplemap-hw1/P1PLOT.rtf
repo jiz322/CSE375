@@ -1,0 +1,63 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2578
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red38\green38\blue38;\red246\green246\blue246;
+\red83\green83\blue83;}
+{\*\expandedcolortbl;;\csgray\c0;\cssrgb\c20000\c20000\c20000;\cssrgb\c97255\c97255\c97255;
+\cssrgb\c40000\c40000\c40000;}
+\margl1440\margr1440\vieww23040\viewh17400\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf2 \CocoaLigature0 import matplotlib.pyplot as plt\
+import numpy as np\
+fig, ax = plt.subplots()\
+ax.plot([1,2,4,6,8],[0.014591,0.012855,0.011681,0.015821,0.015065], label="10locks")\
+ax.plot([1,2,4,6,8],[0.016018,0.021482,0.028694,0.047767,0.053910], label="3locks")\
+ax.plot([1,2,4,6,8],[0.012026,0.019916,0.021515,0.026101,0.021868], label="1lock")\
+ax.set_xlabel('threads')\
+ax.set_ylabel('time')\
+ax.set_title("8192 calls of do_work with 2560keys")\
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html#matplotlib.axes.Axes.legend"}}{\fldrslt 
+\f1\fs25\fsmilli12600 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\CocoaLigature1 ax\cf5 .\cf3 legend}}
+\f1\fs25\fsmilli12600 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\CocoaLigature1 ()
+\f0\fs28 \cf2 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardeftab720\pardirnatural\partightenfactor0
+plt.show()\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\
+fig, ax = plt.subplots()\
+ax.plot([1,2,4,6,8],[1.371782,0.948251,0.798429,0.994225,1.047548], label="10locks")\
+ax.plot([1,2,4,6,8],[1.429046,1.408906,1.635108,1.865892,2.117399], label="3locks")\
+ax.plot([1,2,4,6,8],[1.097407,1.294985,1.360782,1.350061,1.390250], label="1lock")\
+ax.set_xlabel('threads')\
+ax.set_ylabel('time')\
+ax.set_title("81920 calls of do_work with 25600keys")\
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html#matplotlib.axes.Axes.legend"}}{\fldrslt 
+\f1\fs25\fsmilli12600 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\CocoaLigature1 ax\cf5 .\cf3 legend}}
+\f1\fs25\fsmilli12600 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\CocoaLigature1 ()
+\f0\fs28 \cf2 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+plt.show()\
+\
+\
+fig, ax = plt.subplots()\
+ax.plot([1,2,4,6,8],[13.196976,8.920790,9.360545,9.514213,10.140076], label="10locks")\
+ax.plot([1,2,4,6,8],[14.095736,13.080601,12.8651008,16.541470,18.432394], label="3locks")\
+ax.plot([1,2,4,6,8],[10.875926,12.060462,12.122647,12.802620,12.455547], label="1lock")\
+ax.set_xlabel('threads')\
+ax.set_ylabel('time')\
+ax.set_title("81920 calls of do_work with 256000keys")\
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.legend.html#matplotlib.axes.Axes.legend"}}{\fldrslt 
+\f1\fs25\fsmilli12600 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\CocoaLigature1 ax\cf5 .\cf3 legend}}
+\f1\fs25\fsmilli12600 \cf3 \cb4 \expnd0\expndtw0\kerning0
+\CocoaLigature1 ()
+\f0\fs28 \cf2 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+plt.show()}
