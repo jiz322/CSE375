@@ -23,7 +23,7 @@ struct config_t {
     int threads;
 
     // simple constructor
-    config_t() : key_max(25600), iters(81920), name("10 partisan"), threads(1) { }
+    config_t() : key_max(25600), iters(40960), name("10 partisan"), threads(2) { }
 
     // Print the values of the iters, and name fields
     void dump();
