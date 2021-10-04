@@ -207,8 +207,8 @@ public:
 		{
 			while(true)
 			{
-				int index_point = rand() % total_points;
-
+				int index_point = 77*i+100 % total_points;
+				
 				if(find(prohibited_indexes.begin(), prohibited_indexes.end(),
 						index_point) == prohibited_indexes.end())
 				{
