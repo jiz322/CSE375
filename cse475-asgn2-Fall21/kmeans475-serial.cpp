@@ -147,19 +147,24 @@ private:
 		double sum = 0.0, min_dist;
 		int id_cluster_center = 0;
 
+		//Can do parallel for here
+		// Investigate how locality work
+		//Notice that parallel for might break the locality here
+		// Compute the distance b/w point and cluster 0
 		for(int i = 0; i < total_values; i++)
 		{
 			sum += pow(clusters[0].getCentralValue(i) -
 					   point.getValue(i), 2.0);
 		}
-
+		//min_dist has to be less or equal to dist to cluster 0
 		min_dist = sqrt(sum);
 
+		//Can do parallel for here without worries
 		for(int i = 1; i < K; i++)
 		{
 			double dist;
 			sum = 0.0;
-
+			// Same as line 154
 			for(int j = 0; j < total_values; j++)
 			{
 				sum += pow(clusters[i].getCentralValue(j) -
@@ -197,6 +202,7 @@ public:
 		vector<int> prohibited_indexes;
 
 		// choose K distinct values for the centers of the clusters
+		// stage one, very short. Low piority to optimize
 		for(int i = 0; i < K; i++)
 		{
 			while(true)
@@ -217,12 +223,16 @@ public:
         auto end_phase1 = chrono::high_resolution_clock::now();
         
 		int iter = 1;
-
 		while(true)
 		{
 			bool done = true;
 
 			// associates each point to the nearest center
+			// Notice the locality of points[i]
+			// Consider piplining to maintain this locality
+			// try parallel for here
+			auto start_loop = chrono::high_resolution_clock::now();
+			//NB, the time cost of this loop decrease as more iterations
 			for(int i = 0; i < total_points; i++)
 			{
 				int id_old_cluster = points[i].getCluster();
@@ -238,7 +248,7 @@ public:
 					done = false;
 				}
 			}
-
+			auto end_s1 = chrono::high_resolution_clock::now();
 			// recalculating the center of each cluster
 			for(int i = 0; i < K; i++)
 			{
@@ -255,7 +265,9 @@ public:
 					}
 				}
 			}
-
+			auto end_s2 = chrono::high_resolution_clock::now();
+			cout << "First loop = "<<std::chrono::duration_cast<std::chrono::microseconds>(end_s1-start_loop).count()<<"\n";
+			cout << "Second loop = "<<std::chrono::duration_cast<std::chrono::microseconds>(end_s2-end_s1).count()<<"\n";
 			if(done == true || iter >= max_iterations)
 			{
 				cout << "Break in iteration " << iter << "\n\n";
@@ -295,7 +307,6 @@ public:
             cout << "TOTAL EXECUTION TIME = "<<std::chrono::duration_cast<std::chrono::microseconds>(end-begin).count()<<"\n";
             
             cout << "TIME PHASE 1 = "<<std::chrono::duration_cast<std::chrono::microseconds>(end_phase1-begin).count()<<"\n";
-            
             cout << "TIME PHASE 2 = "<<std::chrono::duration_cast<std::chrono::microseconds>(end-end_phase1).count()<<"\n";
 		}
 	}
