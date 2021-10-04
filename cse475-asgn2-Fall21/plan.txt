@@ -1,0 +1,62 @@
+1. skim over the algorithm github page
+2. hunt for a larger example
+3. Think where and what can I do to this larger example
+4. Experinment.
+
+
+ALL having 2 iterations
+Macbook:
+    NB: TAKE AWAY: 
+    1. when a lot of values, second for loop takes much longer than the first.
+    2. Time of p1 grows slowly
+    3. Time of p2 has less than linear grows until more than 32. For 32 to 128 there is a very fast growth of time.
+
+4 values in datapoint:
+p1: 20
+p2: 93
+
+8 values
+p1: 23
+p2: 132
+
+16 values 
+p1: 25
+p2: 231
+
+32 values 
+p1: 33
+p2: 532 //Second loop far larger than the First
+
+64 values 
+p1: 55
+p2: 1312 //Second loop far larger than the First
+
+128 values
+p1: 56
+p2: 4076
+
+256 values
+p1: 56
+p2: 28084
+
+512 values
+p1: 132
+p2: 45527
+
+640 values
+p1: 198
+p2: 70176
+
+768 values
+p1: 205
+p2: 97786
+
+896 values
+p1: 215
+p2: 130695
+
+1024 values
+p1: 247
+p2: 168573
+
+Sunlab:
