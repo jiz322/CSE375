@@ -205,9 +205,10 @@ public:
 		// stage one, very short. Low piority to optimize
 		for(int i = 0; i < K; i++)
 		{
+			int j = 1; //NB replace rand() by fake random to make my measurements actually make sense.
 			while(true)
 			{
-				int index_point = 77*i+100 % total_points;
+				int index_point = 1234*j % total_points;
 				
 				if(find(prohibited_indexes.begin(), prohibited_indexes.end(),
 						index_point) == prohibited_indexes.end())
