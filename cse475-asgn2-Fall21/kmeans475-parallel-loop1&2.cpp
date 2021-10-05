@@ -240,9 +240,9 @@ public:
 
 
 			// Loop 1 -------------------------------------------------
-			//NB, the time cost of this loop decrease as more iterations
+			//NB, the time cost of this loop varies in different iterations
 			tbb::parallel_for(
-					tbb::blocked_range<int>(0, total_values),[&](tbb::blocked_range<int> r)
+					tbb::blocked_range<int>(0, total_points),[&](tbb::blocked_range<int> r)
 					{
 						for(int i = r.begin(); i != r.end(); ++i)
 						{
