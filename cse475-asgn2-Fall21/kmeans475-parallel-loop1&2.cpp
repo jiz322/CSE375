@@ -260,6 +260,7 @@ public:
 							}
 						}
 					}
+			);
 			auto end_s1 = chrono::high_resolution_clock::now();
 
 
