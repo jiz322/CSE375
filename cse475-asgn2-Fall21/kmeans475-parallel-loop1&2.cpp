@@ -249,15 +249,15 @@ public:
 							int id_old_cluster = points[i].getCluster();
 							int id_nearest_center = getIDNearestCenter(points[i]);
 
-							// if(id_old_cluster != id_nearest_center)
-							// {
-							// 	if(id_old_cluster != -1)
-							// 		clusters[id_old_cluster].removePoint(points[i].getID());
+							if(id_old_cluster != id_nearest_center)
+							{
+								// if(id_old_cluster != -1)
+								// 	clusters[id_old_cluster].removePoint(points[i].getID());
 
-							// 	points[i].setCluster(id_nearest_center);
-							// 	clusters[id_nearest_center].addPoint(points[i]);
-							// 	done = false;
-							// }
+								points[i].setCluster(id_nearest_center);
+								clusters[id_nearest_center].addPoint(points[i]);
+								done = false;
+							}
 						}
 					}
 			);
