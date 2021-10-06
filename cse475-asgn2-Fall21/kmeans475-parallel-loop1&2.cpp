@@ -253,7 +253,7 @@ public:
 							{
 								// if(id_old_cluster != -1)
 								// 	clusters[id_old_cluster].removePoint(points[i].getID());
-
+								printf("p0");
 								points[i].setCluster(id_nearest_center);
 								printf("p1");
 								clusters[id_nearest_center].addPoint(points[i]);
