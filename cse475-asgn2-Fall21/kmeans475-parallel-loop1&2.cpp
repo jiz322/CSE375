@@ -251,12 +251,13 @@ public:
 
 							if(id_old_cluster != id_nearest_center)
 							{
-								if(id_old_cluster != -1)
-									clusters[id_old_cluster].removePoint(points[i].getID());
+								// if(id_old_cluster != -1)
+								// 	clusters[id_old_cluster].removePoint(points[i].getID());
 
 								points[i].setCluster(id_nearest_center);
-								printf("id_nearest_center: %d", id_nearest_center);
-								//clusters[id_nearest_center].addPoint(points[i]);
+								printf("p1");
+								clusters[id_nearest_center].addPoint(points[i]);
+								printf("p2");
 								done = false;
 							}
 						}
