@@ -248,7 +248,6 @@ public:
 					tbb::blocked_range<int>(0, total_points),[&](tbb::blocked_range<int> r)
 					{
 						vector<std::mutex> mutexes(K);
-						std::mutex mutex;
 						for(int i = r.begin(); i != r.end(); ++i)
 						{
 							int id_old_cluster = points[i].getCluster(); // read the id of cluster
@@ -256,8 +255,12 @@ public:
 
 							if(id_old_cluster != id_nearest_center)
 							{
-								if(id_old_cluster != -1)
+								if(id_old_cluster != -1){
+									std::lock_guard<std::mutex> lock (mutexes[id_cluster_center]);
 									clusters[id_old_cluster].removePoint(points[i].getID()); //write to cluster: remove point[i]
+
+								}
+								std::lock_guard<std::mutex> lock (mutexes[id_nearest_center]);
 								points[i].setCluster(id_nearest_center);
 								clusters[id_nearest_center].addPoint(points[i]); //write to cluster: push point[i] to vec
 								done = false;
