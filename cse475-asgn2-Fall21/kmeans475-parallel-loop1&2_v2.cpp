@@ -256,7 +256,7 @@ public:
 							if(id_old_cluster != id_nearest_center)
 							{
 								if(id_old_cluster != -1){
-									std::lock_guard<std::mutex> lock (mutexes[id_cluster_center]);
+									std::lock_guard<std::mutex> lock (mutexes[id_old_cluster]);
 									clusters[id_old_cluster].removePoint(points[i].getID()); //write to cluster: remove point[i]
 
 								}
