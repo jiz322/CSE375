@@ -78,7 +78,6 @@ private:
 	int id_cluster;
 	vector<double> central_values;
 	vector<Point> points;
-	std::mutex mutex;
 
 public:
 	Cluster(int id_cluster, Point point)
@@ -100,7 +99,7 @@ public:
 
 	bool removePoint(int id_point)
 	{
-		std::lock_guard<std::mutex> lock (mutex);
+		//std::lock_guard<std::mutex> lock (mutex);
 		int total_points = points.size();
 
 		for(int i = 0; i < total_points; i++)
@@ -248,6 +247,7 @@ public:
 			tbb::parallel_for(
 					tbb::blocked_range<int>(0, total_points),[&](tbb::blocked_range<int> r)
 					{
+						std::mutex mutex;
 						for(int i = r.begin(); i != r.end(); ++i)
 						{
 							int id_old_cluster = points[i].getCluster(); // read the id of cluster
