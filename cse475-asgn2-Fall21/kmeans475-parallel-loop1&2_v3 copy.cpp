@@ -240,7 +240,7 @@ public:
 			// try parallel for here
 			auto start_loop = chrono::high_resolution_clock::now();
 
-
+			printf("here");
 
 			// Loop 1 -------------------------------------------------
 			//NB, the time cost of this loop decrease as more iterations
