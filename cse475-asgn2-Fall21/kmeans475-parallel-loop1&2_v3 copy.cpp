@@ -230,6 +230,7 @@ public:
         auto end_phase1 = chrono::high_resolution_clock::now();
         
 		int iter = 1;
+		printf("\n\nhere1\n\n");
 		while(true)
 		{
 			bool done = true;
@@ -240,7 +241,7 @@ public:
 			// try parallel for here
 			auto start_loop = chrono::high_resolution_clock::now();
 
-			printf("here");
+			printf("\n\nhere0\n\n");
 
 			// Loop 1 -------------------------------------------------
 			//NB, the time cost of this loop decrease as more iterations
