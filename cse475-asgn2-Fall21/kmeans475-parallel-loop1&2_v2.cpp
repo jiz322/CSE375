@@ -83,7 +83,6 @@ private:
 public:
 	Cluster(int id_cluster, Point point)
 	{
-		this->mtx = new std::mutex();
 		this->id_cluster = id_cluster;
 
 		int total_values = point.getTotalValues();
@@ -101,7 +100,6 @@ public:
 
 	bool removePoint(int id_point)
 	{
-		this->mtx.lock.();
 		int total_points = points.size();
 
 		for(int i = 0; i < total_points; i++)
@@ -113,7 +111,6 @@ public:
 				return true;
 			}
 		}
-		this->mtx.unlock.();
 		return false;
 	}
 
