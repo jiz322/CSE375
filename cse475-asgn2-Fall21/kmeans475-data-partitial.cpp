@@ -397,6 +397,8 @@ int main(int argc, char *argv[])
 	}
 
 	printf("size: %d", vec_points.size());
+	printf("size 1: %d", vec_points[0].size());
+	printf("size 2: %d", vec_points[1].size());
 
 
 	return 0;
