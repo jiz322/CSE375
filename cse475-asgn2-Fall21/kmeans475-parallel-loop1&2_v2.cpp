@@ -247,9 +247,9 @@ public:
 			tbb::parallel_for(
 					tbb::blocked_range<int>(0, total_points),[&](tbb::blocked_range<int> r)
 					{
-						vector<std::mutex> mutexes(K);
+						vector<std::mutex> mutexes();
 						for (int i = 0; i < K; i++){
-							mutexes[i] = std::mutex mutex;
+							mutexes.push_back();
 						}
 						std::mutex mutex;
 						for(int i = r.begin(); i != r.end(); ++i)
