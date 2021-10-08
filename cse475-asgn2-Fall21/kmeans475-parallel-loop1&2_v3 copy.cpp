@@ -362,6 +362,7 @@ int main(int argc, char *argv[])
 	vector<Point> points;
 	string point_name;
 
+	printf("\n\nhere1\n\n");
 	for(int i = 0; i < total_points; i++)
 	{
 		vector<double> values;
