@@ -358,7 +358,7 @@ int main(int argc, char *argv[])
 	cin >> total_points >> total_values >> K >> max_iterations >> has_name;
 
 
-	int partitian = total_points/(100*K) + 1; 
+	int partitian = total_points/(150*K) + 1; 
 
 	vector<vector<Point>> vec_points;
 	string point_name;
