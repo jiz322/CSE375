@@ -107,7 +107,6 @@ public:
 			if(points[i].getID() == id_point)
 			{
 				points.erase(points.begin() + i);
-				this->mtx.unlock.();
 				return true;
 			}
 		}
