@@ -100,7 +100,7 @@ public:
 
 	bool removePoint(int id_point)
 	{
-		this->mtx.lock.();
+		std::lock_guard<std::mutex> lck (this->mtx);
 		int total_points = points.size();
 
 		for(int i = 0; i < total_points; i++)
@@ -108,7 +108,6 @@ public:
 			if(points[i].getID() == id_point)
 			{
 				points.erase(points.begin() + i);
-				this->mtx.unlock.();
 				return true;
 			}
 		}
