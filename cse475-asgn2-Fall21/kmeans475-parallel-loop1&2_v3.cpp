@@ -253,7 +253,7 @@ public:
 						printf("K: %d\n", K);
 						for(int i = r.begin(); i != r.end(); ++i)
 						{
-							printf("here\n";
+							printf("here\n");
 							int id_old_cluster = points[i].getCluster(); // read the id of cluster
 							int id_nearest_center = getIDNearestCenter(points[i]); // read
 
