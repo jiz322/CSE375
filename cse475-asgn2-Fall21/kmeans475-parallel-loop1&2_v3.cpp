@@ -255,7 +255,7 @@ public:
 							int id_old_cluster = points[i].getCluster(); // read the id of cluster
 							int id_nearest_center = getIDNearestCenter(points[i]); // read
 							std::lock_guard<std::mutex> lock (mutexes[id_nearest_center]);
-							std::lock_guard<std::mutex> lock (mutexes[id_old_cluster]);
+							std::lock_guard<std::mutex> lock2 (mutexes[id_old_cluster]);
 							if(id_old_cluster != id_nearest_center)
 							{
 								if(id_old_cluster != -1){
