@@ -78,7 +78,7 @@ private:
 	int id_cluster;
 	vector<double> central_values;
 	vector<Point> points;
-	std::mutex mtx;
+	//std::mutex mtx;
 
 public:
 	Cluster(int id_cluster, Point point)
