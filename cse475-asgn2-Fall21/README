@@ -1,0 +1,1 @@
+For the time measurement, the rand() is replaced by some fixed value. It sacrifies some randomness but largely reduce the data varience.
