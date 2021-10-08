@@ -251,10 +251,8 @@ public:
 					tbb::blocked_range<int>(0, total_points),[&](tbb::blocked_range<int> r)
 					{
 						std::lock_guard<std::mutex> lock3 (mtx);
-						printf("K: %d\n", K);
 						for(int i = r.begin(); i != r.end(); ++i)
 						{
-							printf("here\n");
 							int id_old_cluster = points[i].getCluster(); // read the id of cluster
 							int id_nearest_center = getIDNearestCenter(points[i]); // read
 
