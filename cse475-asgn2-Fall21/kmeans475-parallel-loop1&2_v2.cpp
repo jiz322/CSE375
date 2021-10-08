@@ -78,7 +78,7 @@ private:
 	int id_cluster;
 	vector<double> central_values;
 	vector<Point> points;
-	std::mutex mtx;
+	std::mutex mutex;
 
 public:
 	Cluster(int id_cluster, Point point)
@@ -100,6 +100,7 @@ public:
 
 	bool removePoint(int id_point)
 	{
+		std::lock_guard<std::mutex> lock (mutex);
 		int total_points = points.size();
 
 		for(int i = 0; i < total_points; i++)
