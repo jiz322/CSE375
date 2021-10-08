@@ -246,11 +246,11 @@ public:
 			// Loop 1 -------------------------------------------------
 			//NB, the time cost of this loop decrease as more iterations
 			std::mutex mtx;
-			std::lock_guard<std::mutex> lock3 (mtx);
+			
 			tbb::parallel_for(
 					tbb::blocked_range<int>(0, total_points),[&](tbb::blocked_range<int> r)
 					{
-						
+						std::lock_guard<std::mutex> lock3 (mtx);
 						printf("K: %d\n", K);
 						for(int i = r.begin(); i != r.end(); ++i)
 						{
