@@ -396,7 +396,7 @@ int main(int argc, char *argv[])
 		kmeans.run(vec_points[j]);
 	}
 
-	printf("size: %d", vec_points[j].size());
+	printf("size: %d", vec_points.size());
 
 
 	return 0;
