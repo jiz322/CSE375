@@ -13,6 +13,7 @@
 #include <mutex>
 
 using namespace std;
+int flag = 1;
 
 class Point
 {
@@ -399,6 +400,130 @@ int main(int argc, char *argv[])
 	printf("size: %d", vec_points.size());
 	printf("size 1: %d", vec_points[0].size());
 	printf("size 2: %d", vec_points[1].size());
+
+	//now we need to merge
+
+	//Re computing the center
+
+		int iter = 1;
+		while(true)
+		{
+			bool done = true;
+
+			// associates each point to the nearest center
+			// Notice the locality of points[i]
+			// Consider piplining to maintain this locality
+			// try parallel for here
+			auto start_loop = chrono::high_resolution_clock::now();
+
+
+
+			// Loop 1 -------------------------------------------------
+			//NB, the time cost of this loop decrease as more iterations
+			vector<std::mutex> mutexes(K);
+			tbb::parallel_for(
+					tbb::blocked_range<int>(0, total_points),[&](tbb::blocked_range<int> r)
+					{
+						for(int i = r.begin(); i != r.end(); ++i)
+						{
+							int id_old_cluster = points[i].getCluster(); // read the id of cluster
+							int id_nearest_center = getIDNearestCenter(points[i]); // read
+
+							if(id_old_cluster != id_nearest_center)
+							{
+								if(id_old_cluster != -1){
+									std::lock_guard<std::mutex> lock (mutexes[id_old_cluster]);
+									clusters[id_old_cluster].removePoint(points[i].getID()); //write to cluster: remove point[i]
+
+								}
+								std::lock_guard<std::mutex> lock (mutexes[id_nearest_center]);
+								points[i].setCluster(id_nearest_center);
+								clusters[id_nearest_center].addPoint(points[i]); //write to cluster: push point[i] to vec
+								done = false;
+
+								//NB: what if I change this vec to array type which has static size?
+									// ""
+				
+							}
+						}
+					}
+			);
+			auto end_s1 = chrono::high_resolution_clock::now();
+
+
+
+			// Loop 2 -------------------------------------------------
+			// recalculating the center of each cluster
+			for(int i = 0; i < K; i++)
+			{
+				tbb::parallel_for(
+					tbb::blocked_range<int>(0, total_values),[&](tbb::blocked_range<int> r)
+					{
+						for(int j = r.begin(); j != r.end(); ++j)
+						{
+							int total_points_cluster = clusters[i].getTotalPoints();
+							double sum = 0.0;
+
+							if(total_points_cluster > 0)
+							{
+								for(int p = 0; p < total_points_cluster; p++)
+									sum += clusters[i].getPoint(p).getValue(j);
+								clusters[i].setCentralValue(j, sum / total_points_cluster);
+							}
+						}
+					}
+				);
+			}
+
+
+
+
+			auto end_s2 = chrono::high_resolution_clock::now();
+			cout << "First loop = "<<std::chrono::duration_cast<std::chrono::microseconds>(end_s1-start_loop).count()<<"\n";
+			cout << "Second loop = "<<std::chrono::duration_cast<std::chrono::microseconds>(end_s2-end_s1).count()<<"\n";
+			if(done == true || iter >= max_iterations)
+			{
+				cout << "Break in iteration " << iter << "\n\n";
+				break;
+			}
+
+			iter++;
+		}
+        auto end = chrono::high_resolution_clock::now();
+
+		// shows elements of clusters
+		for(int i = 0; i < K; i++)
+		{
+			int total_points_cluster =  clusters[i].getTotalPoints();
+
+			cout << "Cluster " << clusters[i].getID() + 1 << endl;
+			for(int j = 0; j < total_points_cluster; j++)
+			{
+				cout << "Point " << clusters[i].getPoint(j).getID() + 1 << ": ";
+				for(int p = 0; p < total_values; p++)
+					cout << clusters[i].getPoint(j).getValue(p) << " ";
+
+				string point_name = clusters[i].getPoint(j).getName();
+
+				if(point_name != "")
+					cout << "- " << point_name;
+
+				cout << endl;
+			}
+
+			cout << "Cluster values: ";
+
+			for(int j = 0; j < total_values; j++)
+				cout << clusters[i].getCentralValue(j) << " ";
+
+			cout << "\n\n";
+            cout << "TOTAL EXECUTION TIME = "<<std::chrono::duration_cast<std::chrono::microseconds>(end-begin).count()<<"\n";
+            
+            cout << "TIME PHASE 1 = "<<std::chrono::duration_cast<std::chrono::microseconds>(end_phase1-begin).count()<<"\n";
+            cout << "TIME PHASE 2 = "<<std::chrono::duration_cast<std::chrono::microseconds>(end-end_phase1).count()<<"\n";
+		}
+
+
 
 
 	return 0;

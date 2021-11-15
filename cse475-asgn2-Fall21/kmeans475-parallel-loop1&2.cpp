@@ -144,6 +144,11 @@ private:
 	vector<Cluster> clusters;
 
 	// return ID of nearest center (uses euclidean distance)
+
+
+
+
+	//Can optimize this function
 	int getIDNearestCenter(Point point)
 	{
 		double sum = 0.0, min_dist;
@@ -246,20 +251,24 @@ public:
 					{
 						for(int i = r.begin(); i != r.end(); ++i)
 						{
-							int id_old_cluster = points[i].getCluster();
-							int id_nearest_center = getIDNearestCenter(points[i]);
+							int id_old_cluster = points[i].getCluster(); // read the id of cluster
+							int id_nearest_center = getIDNearestCenter(points[i]); // read
 
 							if(id_old_cluster != id_nearest_center)
 							{
-								printf("p0");
 								if(id_old_cluster != -1)
-									clusters[id_old_cluster].removePoint(points[i].getID());
-								printf("p1");
+									clusters[id_old_cluster].removePoint(points[i].getID()); //write to cluster: remove point[i]
 								points[i].setCluster(id_nearest_center);
-								printf("p2");
-								clusters[id_nearest_center].addPoint(points[i]);
-								printf("p3");
+								clusters[id_nearest_center].addPoint(points[i]); //write to cluster: push point[i] to vec
+								//Question: where does the conflict come if we push/removing different point concurently?
+								//For the function that does not have return any values (e.g addPoint), 
+								//when they finished e.g. pushing point[0] to vec,
+								//do they have anything to do with the state snapshot of the entire object (cluster)?
 								done = false;
+
+								//NB: what if I change this vec to array type which has static size?
+									// ""
+				
 							}
 						}
 					}

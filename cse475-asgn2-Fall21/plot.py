@@ -1,0 +1,32 @@
+import matplotlib.pyplot as plt
+import numpy as np
+fig, ax = plt.subplots()
+ax.plot([2,4,8,16],[8022872,8049017,8027431,9488883], label="serial")
+ax.plot([2,4,8,16],[2143957,2675137,3141398,4670542], label="version1")
+ax.plot([2,4,8,16],[1783961,1827218,1901656,2259712], label="version4")
+ax.set_xlabel('K')
+ax.set_ylabel('time')
+ax.set_title("(5000, 1024, K, 100, 0)")
+ax.legend()
+plt.show()
+
+fig, ax = plt.subplots()
+ax.plot([2,4,8,16],[110336,109933,10976,14664], label="serial")
+ax.plot([2,4,8,16],[110372,110853,11721,15118], label="version1")
+ax.plot([2,4,8,16],[107542,97426,7015,7688], label="version4")
+ax.set_xlabel('K')
+ax.set_ylabel('time')
+ax.set_title("(5000, 2, K, 100, 0)")
+ax.legend()
+plt.show()
+
+
+fig, ax = plt.subplots()
+ax.plot([2,4,8,16],[53221,56870,98424,80625], label="serial")
+ax.plot([2,4,8,16],[18270,21869,44477,46181], label="version1")
+ax.plot([2,4,8,16],[15530,16340,26988,22439], label="version4")
+ax.set_xlabel('K')
+ax.set_ylabel('time')
+ax.set_title("(50, 1024, K, 100, 0)")
+ax.legend()
+plt.show()
